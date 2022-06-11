@@ -27,10 +27,10 @@
             <td>Velocity (km/s)</td>
         </tr>
         <% for (let i = 0; i < data.data.length; i += 1) { %>
-            <tr id="<%= data.data[i][0] %>">
+            <tr data-object="<%= data.data[i][0].replace(/\s/g,'-') %>">
                 <% for (let j of [11,3,4,7]) { %>
                     <% if (j === 3) { %>
-                        <td> <%= data.data[i][j] %> +- <%= data.data[i][9] %></td>
+                        <td><%= data.data[i][j] %> +- <%= data.data[i][9] %></td>
                     <% } else { %>
                         <td><%= data.data[i][j] %></td>
                     <% } %>
