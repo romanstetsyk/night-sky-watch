@@ -1,19 +1,9 @@
 const express = require('express');
 const path = require('path');
-const apicache = require("apicache");
 const { response } = require('express');
 
 
 const app = express();
-
-
-//configure apicache 
-let cache = apicache.middleware
-//caching all routes for 5 minutes
-app.use(cache('5 minutes'))
-
-
-app.set('etag', false);
 
 
 app.set('view engine', 'ejs')
@@ -23,26 +13,31 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-app.get('/', async (request, response) => {
 
-    function addDays(deltaDays, dateMin) {
-        /**
-         * delta Days: number of days. Integer
-         * dateMin: starting date in the form 'yyyy-mm-dd'. If omitted, current date is used.
-         * function adds deltaDays to the dateMin
-         * returns a string in the form 'yyyy-mm-dd'
-         */
-        let dateMax = dateMin ? new Date(dateMin) : new Date();
-        dateMax.setDate(dateMax.getDate() + deltaDays);
-        return dateMax.toISOString().split('T')[0];
-    }
+function addDays(deltaDays, dateMin) {
+    /**
+     * delta Days: number of days. Integer
+     * dateMin: starting date in the form 'yyyy-mm-dd'. If omitted, current date is used.
+     * function adds deltaDays to the dateMin
+     * returns a string in the form 'yyyy-mm-dd'
+     */
+    let dateMax = dateMin ? new Date(dateMin) : new Date();
+    dateMax.setDate(dateMax.getDate() + deltaDays);
+    return dateMax.toISOString().split('T')[0];
+}
+
+async function getCloseApproachData(dateMin, dateMax) {
+    const apiResponse = await fetch(`https://ssd-api.jpl.nasa.gov/cad.api?date-min=${dateMin}&date-max=${dateMax}&body=Earth&fullname=true&dist-max=1`);
+    const data = await apiResponse.json();
+    return data;
+}
+
+app.get('/', async (request, response) => {
 
     let dateMin = request.query.date ? request.query.date : addDays(0);
     let dateMax = addDays(60, dateMin);
     
-    console.log(`https://ssd-api.jpl.nasa.gov/cad.api?date-min=${dateMin}&date-max=${dateMax}&body=Earth&fullname=true&dist-max=1`);
-    const apiRes = await fetch(`https://ssd-api.jpl.nasa.gov/cad.api?date-min=${dateMin}&date-max=${dateMax}&body=Earth&fullname=true&dist-max=1`);
-    const data = await apiRes.json();
+    let data = await getCloseApproachData(dateMin, dateMax);
 
     // console.log(data);
     response.render('index.ejs', {data: data, date: dateMin});
