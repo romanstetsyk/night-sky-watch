@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/style.css"> -->
+</head>
+<body>
+    <h1>NASA</h1>
+
+    <form action="/dateSearch" method="post">
+        <input type="date" required name="date" value="<%= date %>">
+        <input id="searchDate" type="submit">
+    </form>
+    
+    <p>Count: <%= data.count %></p>
+
+    <% if (data.count > 0) { %>
+    <table>
+        <tr>
+            <td>Object</td>
+            <td>Close Approach (CA) Date</td>
+            <td>CA Distance (au)</td>
+            <td>Velocity (km/s)</td>
+        </tr>
+        <% for (let i = 0; i < data.data.length; i += 1) { %>
+            <tr id="<%= data.data[i][0] %>">
+                <% for (let j of [11,3,4,7]) { %>
+                    <% if (j === 3) { %>
+                        <td> <%= data.data[i][j] %> +- <%= data.data[i][9] %></td>
+                    <% } else { %>
+                        <td><%= data.data[i][j] %></td>
+                    <% } %>
+                <% } %>
+            </tr>
+            
+        <% } %>
+    </table>
+    <% } %>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
