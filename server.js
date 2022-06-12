@@ -37,6 +37,10 @@ async function getObjectData(name) {
     return data;
 }
 
+// async function getNeowsData(spkid) {
+//     const apiResponse = await fetch(``)
+// }
+
 // global object to be available across all routes.
 // should use cache to avoid this
 let globalData;
