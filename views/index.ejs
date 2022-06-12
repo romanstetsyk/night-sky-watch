@@ -19,7 +19,7 @@
     <p>Count: <%= data.count %></p>
 
     <% if (data.count > 0) { %>
-    <table>
+    <table id="ca-data">
         <tr>
             <td>Object</td>
             <td>Close Approach (CA) Date</td>
@@ -27,14 +27,14 @@
             <td>Velocity (km/s)</td>
         </tr>
         <% for (let i = 0; i < data.data.length; i += 1) { %>
-            <tr data-object="<%= data.data[i][0].replace(/\s/g,'-') %>">
-                <% for (let j of [11,3,4,7]) { %>
-                    <% if (j === 3) { %>
-                        <td><%= data.data[i][j] %> +- <%= data.data[i][9] %></td>
-                    <% } else { %>
-                        <td><%= data.data[i][j] %></td>
-                    <% } %>
-                <% } %>
+            <tr>
+                <td><%= data.data[i][11] %></td>
+                <td><%= data.data[i][3] %> +- <%= data.data[i][9] %></td>
+                <td><%= data.data[i][4] %></td>
+                <td><%= data.data[i][7] %></td>
+                <td><a target="_blank" href="https://cneos.jpl.nasa.gov/ca/ov/#load=&desig=<%= data.data[i][0].replace(/ /, '%20') %>&cajd=<%= data.data[i][2] %>">View animation</a></td>
+                <td><a target="_blank" href="https://ssd.jpl.nasa.gov/ov/#load=<%= data.data[i][0].replace(/ /, '%20') %>&lookat=SSB&interval=3&eclipticgrid=false&">View orbit</a></td>
+              
             </tr>
             
         <% } %>

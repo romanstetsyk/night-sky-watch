@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const { response } = require('express');
 
 
 const app = express();
@@ -27,10 +26,14 @@ function addDays(deltaDays, dateMin) {
 }
 
 async function getCloseApproachData(dateMin, dateMax) {
-    const apiResponse = await fetch(`https://ssd-api.jpl.nasa.gov/cad.api?date-min=${dateMin}&date-max=${dateMax}&body=Earth&fullname=true&dist-max=1`);
+    const apiResponse = await fetch(`https://ssd-api.jpl.nasa.gov/cad.api?date-min=${dateMin}&date-max=${dateMax}&body=Earth&fullname=true&dist-max=0.1`);
     const data = await apiResponse.json();
     return data;
 }
+
+// global object to be available across all routes.
+// should use cache to avoid this
+let globalData;
 
 app.get('/', async (request, response) => {
 
@@ -38,6 +41,8 @@ app.get('/', async (request, response) => {
     let dateMax = addDays(60, dateMin);
     
     let data = await getCloseApproachData(dateMin, dateMax);
+
+    globalData = data;
 
     // console.log(data);
     response.render('index.ejs', {data: data, date: dateMin});
@@ -47,6 +52,14 @@ app.post('/dateSearch', (request, response) => {
     let date = request.body.date
     // To redirect in browser the request should be made using html <form>
     return response.redirect('/?date=' + date);
+})
+
+app.post('/animation', async (request, response) => {
+    let name = request.body.name.replace(/-/, ' ');
+    console.log(name);
+    let row = globalData.data.find(row => row[11].includes(name));
+    console.log(row);
+    return response.json({'url': `https://cneos.jpl.nasa.gov/ca/ov/#load=&desig=${row[0]}&cajd=${row[2]}&`});
 })
 
 
