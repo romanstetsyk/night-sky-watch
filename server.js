@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 
@@ -37,9 +38,12 @@ async function getObjectData(name) {
     return data;
 }
 
-// async function getNeowsData(spkid) {
-//     const apiResponse = await fetch(``)
-// }
+async function getNeowsData(spkid) {
+    const apiResponse = await fetch(`https://api.nasa.gov/neo/rest/v1/neo/${spkid}?api_key=${process.env.NASA_API}`)
+    if (!apiResponse.ok) return {'status': apiResponse.status};
+    const data = await apiResponse.json();
+    return data;
+}
 
 // global object to be available across all routes.
 // should use cache to avoid this
@@ -74,11 +78,13 @@ app.post('/animation', async (request, response) => {
 
 app.post('/getobjectdata', async (request, response) => {
     let name = request.body.name.replace(/-/, '%20');
-    console.log(name);
     const objectData = await getObjectData(name);
-    console.log(objectData);
-    return response.render('objectdata.ejs', {data: objectData});
-    // return response.json(objectData);
+
+    const spkid = await objectData.object.spkid;
+
+    const neowsData = await getNeowsData(spkid);
+
+    return response.render('objectdata.ejs', {data: objectData, neows: neowsData});
 })
 
 
