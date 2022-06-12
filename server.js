@@ -31,6 +31,12 @@ async function getCloseApproachData(dateMin, dateMax) {
     return data;
 }
 
+async function getObjectData(name) {
+    const apiResponse = await fetch(`https://ssd-api.jpl.nasa.gov/sbdb.api?des=${name}`);
+    const data = await apiResponse.json();
+    return data;
+}
+
 // global object to be available across all routes.
 // should use cache to avoid this
 let globalData;
@@ -60,6 +66,15 @@ app.post('/animation', async (request, response) => {
     let row = globalData.data.find(row => row[11].includes(name));
     console.log(row);
     return response.json({'url': `https://cneos.jpl.nasa.gov/ca/ov/#load=&desig=${row[0]}&cajd=${row[2]}&`});
+})
+
+app.post('/getobjectdata', async (request, response) => {
+    let name = request.body.name.replace(/-/, '%20');
+    console.log(name);
+    const objectData = await getObjectData(name);
+    console.log(objectData);
+    return response.render('objectdata.ejs', {data: objectData});
+    // return response.json(objectData);
 })
 
 

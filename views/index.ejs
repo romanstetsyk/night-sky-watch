@@ -27,8 +27,8 @@
             <td>Velocity (km/s)</td>
         </tr>
         <% for (let i = 0; i < data.data.length; i += 1) { %>
-            <tr>
-                <td><%= data.data[i][11] %></td>
+            <tr data-object="<%= data.data[i][0].replace(/ /, '-') %>">
+                <td><%= data.data[i][0] %></td>
                 <td><%= data.data[i][3] %> +- <%= data.data[i][9] %></td>
                 <td><%= data.data[i][4] %></td>
                 <td><%= data.data[i][7] %></td>
@@ -40,6 +40,9 @@
         <% } %>
     </table>
     <% } %>
+
+    <div id="object-data"></div>
+
 
     <script src="js/main.js"></script>
 </body>

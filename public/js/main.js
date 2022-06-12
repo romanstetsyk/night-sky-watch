@@ -1,20 +1,39 @@
-document.querySelector('#ca-data').addEventListener('click', openAnimation);
+document.querySelectorAll('[data-object]').forEach(e => e.addEventListener('click', openDetails));
 
-async function openAnimation(event) {
-    let objName = event.target.getAttribute('data-object');
-    if (!objName) return;
-    const resp = await fetch('/animation', {
+// async function openAnimation(event) {
+//     let objName = event.target.getAttribute('data-object');
+//     if (!objName) return;
+//     const resp = await fetch('/animation', {
+//         method: 'POST',
+//         body: JSON.stringify({
+//             'name': objName
+//         }),
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'Access-Control-Allow-Origin': '*'
+//         },
+//     })
+//     const data = await resp.json();
+//     console.log(data);
+
+//     window.open(data.url, '_blank')
+// }
+
+
+async function openDetails(event) {
+    let objName = event.currentTarget.getAttribute('data-object');
+    console.log(objName);
+    const resp = await fetch('/getobjectdata', {
         method: 'POST',
         body: JSON.stringify({
             'name': objName
         }),
         headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-        },
-    })
-    const data = await resp.json();
-    console.log(data);
+        }
+    });
+    const data = await resp.text();
 
-    window.open(data.url, '_blank')
+    const div = document.querySelector('#object-data');
+    div.innerHTML = data;
 }
