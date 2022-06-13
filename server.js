@@ -45,18 +45,12 @@ async function getNeowsData(spkid) {
     return data;
 }
 
-// global object to be available across all routes.
-// should use cache to avoid this
-let globalData;
-
 app.get('/', async (request, response) => {
 
     let dateMin = request.query.date ? request.query.date : addDays(0);
     let dateMax = addDays(60, dateMin);
     
     let data = await getCloseApproachData(dateMin, dateMax);
-
-    globalData = data;
 
     // console.log(data);
     response.render('index.ejs', {data: data, date: dateMin});

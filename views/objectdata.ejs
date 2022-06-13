@@ -1,31 +1,34 @@
 <ul>
     <li>Name: <%= data.object.fullname %></li>
-    <li>pha: <%= data.object.pha %></li>
-    <li>spkid: <%= data.object.spkid %></li>
-    <li>kind: <%= data.object.kind %></li>
+    <li>Potentially Hazardous Asteroid: <%= data.object.pha ? 'Yes' : 'No' %></li>
+    <li>SPKID: <%= data.object.spkid %></li>
+    <li>Kind: <%= data.object.kind %></li>
     <% if (neows.status !== 404) { %>
         <li>First observation: <%= neows.orbital_data.first_observation_date %></li>
         <li>Orbit determination date: <%= neows.orbital_data.orbit_determination_date %></li>
         <li>Estimated diameter: <%= Math.trunc(neows.estimated_diameter.meters.estimated_diameter_min) %> - <%= Math.trunc(neows.estimated_diameter.meters.estimated_diameter_max) %> m</li>
-        <li></li>
     <% } %>
 </ul>
 
 <% if (neows.status !== 404) { %>
-<table>
-    <tr>
-        <td>Close Approach Date</td>
-        <td>Relative Velocity (km/s)</td>
-        <td>Miss Distance (au)</td>
-        <td>Orbiting Body</td>
-    </tr>
-    <% for (let obj of neows.close_approach_data) { %>
-    <tr>
-        <td><%= obj.close_approach_date %></td>
-        <td><%= obj.relative_velocity.kilometers_per_second %></td>
-        <td><%= obj.miss_distance.astronomical %></td>
-        <td><%= obj.orbiting_body %></td>
-    </tr>
-    <% } %>
-</table>
+<div class="table-ca">
+    <table>
+        <tr>
+            <thead>
+                <th>Close Approach Date</th>
+                <th>Relative Velocity (km/s)</th>
+                <th>Miss Distance (km)</th>
+                <th>Orbiting Body</th>
+            </thead>
+        </tr>
+        <% for (let obj of neows.close_approach_data) { %>
+        <tr>
+            <td><%= obj.close_approach_date %></td>
+            <td><%= parseFloat(obj.relative_velocity.kilometers_per_second).toFixed(2) %></td>
+            <td><%= Math.round(obj.miss_distance.astronomical * 149597870.7).toLocaleString(undefined, { minimumFractionDigits: 0 }) %></td>
+            <td><%= obj.orbiting_body %></td>
+        </tr>
+        <% } %>
+    </table>
+</div>
 <% } %>

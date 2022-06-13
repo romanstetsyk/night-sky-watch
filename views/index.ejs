@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="assets/css/style.css"> -->
+    <!-- <link rel="stylesheet" href="assets/css/reset.css"> -->
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
     <h1>NASA</h1>
@@ -19,29 +19,41 @@
     <p>Count: <%= data.count %></p>
 
     <% if (data.count > 0) { %>
-    <table id="ca-data">
-        <tr>
-            <td>Object</td>
-            <td>Close Approach (CA) Date</td>
-            <td>CA Distance (au)</td>
-            <td>Velocity (km/s)</td>
-        </tr>
-        <% for (let i = 0; i < data.data.length; i += 1) { %>
-            <tr data-object="<%= data.data[i][0].replace(/ /, '-') %>">
-                <td><%= data.data[i][0] %></td>
-                <td><%= data.data[i][3] %> +- <%= data.data[i][9] %></td>
-                <td><%= data.data[i][4] %></td>
-                <td><%= data.data[i][7] %></td>
-                <td><a target="_blank" href="https://cneos.jpl.nasa.gov/ca/ov/#load=&desig=<%= data.data[i][0].replace(/ /, '%20') %>&cajd=<%= data.data[i][2] %>">View animation</a></td>
-                <td><a target="_blank" href="https://ssd.jpl.nasa.gov/ov/#load=<%= data.data[i][0].replace(/ /, '%20') %>&lookat=SSB&interval=3&eclipticgrid=false&">View orbit</a></td>
-              
-            </tr>
-            
-        <% } %>
-    </table>
+    <div class="container">
+        <div class="flex">
+            <table id="ca-data">
+                <tr>
+                    <thead>
+                        <th>Object</th>
+                        <th>Close Approach (CA) Date</th>
+                        <th>CA Distance (au)</th>
+                        <th>Velocity (km/s)</th>
+                        <th>Animations</th>
+                    </thead>
+                </tr>
+                <tbody>
+                <% for (let i = 0; i < data.data.length; i += 1) { %>
+                    <tr data-object="<%= data.data[i][0].replace(/ /, '-') %>">
+                        <td class="cell-nowrap"><%= data.data[i][0] %></td>
+                        <td><span class="cell-nowrap"><%= data.data[i][3] %></span> <span class="cell-nowrap date-error"> &#177;<%= data.data[i][9] %></span></td>
+                        <td><%= Math.round(data.data[i][4] * 149597870.7).toLocaleString(undefined, { minimumFractionDigits: 0 }) %></td>
+                        <td><%= parseFloat(data.data[i][7]).toFixed(2) %></td>
+                        <td>
+                            <a target="_blank" href="https://cneos.jpl.nasa.gov/ca/ov/#load=&desig=<%= data.data[i][0].replace(/ /, '%20') %>&cajd=<%= data.data[i][2] %>">1</a>
+                            <a target="_blank" href="https://ssd.jpl.nasa.gov/ov/#load=<%= data.data[i][0].replace(/ /, '%20') %>&lookat=SSB&interval=3&eclipticgrid=false&">2</a>
+                        </td>
+                    </tr>
+                <% } %>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div id="object-data" class="flex object-data"></div>
+    </div>
     <% } %>
 
-    <div id="object-data"></div>
+    
 
 
     <script src="js/main.js"></script>

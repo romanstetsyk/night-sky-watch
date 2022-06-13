@@ -21,8 +21,11 @@ document.querySelectorAll('[data-object]').forEach(e => e.addEventListener('clic
 
 
 async function openDetails(event) {
+    document.querySelectorAll('.row-active').forEach(e => e.classList.remove('row-active'));
     let objName = event.currentTarget.getAttribute('data-object');
     console.log(objName);
+    const rowClicked = event.currentTarget;
+    rowClicked.classList.add('row-active');
     const resp = await fetch('/getobjectdata', {
         method: 'POST',
         body: JSON.stringify({
@@ -36,4 +39,5 @@ async function openDetails(event) {
 
     const div = document.querySelector('#object-data');
     div.innerHTML = data;
+    window.scrollTo({top: 0, behavior: 'smooth'});
 }
