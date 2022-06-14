@@ -4,7 +4,6 @@
     
 :root{
     --white:#FFF;
-    --primary:#5693d5;
 }
 
 body{
@@ -56,6 +55,7 @@ body{
 }
 
 .searchButton {
+    text-decoration: none;
     font-family: inherit;
     font-size: 1.5rem;
     color: white;

@@ -10,57 +10,54 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <div class="two">
-        <h1>NASA
-          <span>Asteroid Close Approach Data</span>
-        </h1>
-    </div>
+    <div class="content">
+        <h1>Asteroid Close Approach Data</h1>
+        
+        <section class="description">
+            <p>Near-Earth objects (NEOs) are asteroids or comets of sizes ranging from metres to tens of kilometres that orbit the Sun and whose orbits come close to that of Earth's. Of the more than 600 000 known asteroids in our Solar System, more than 20 000 are NEOs. </p>
+            <p>NEOs could potentially hit our planet and, depending on their size, produce considerable damage. </p>
+            <p>The table below is updated multiple times per day and lists all the known upcoming close approaches between the Earth and NEO asteroids that will be closer than 0.05 astronomical units and will happen in the following 60 days of the date selected</p>
+        </section>
 
-    <p>Near-Earth objects (NEOs) are asteroids or comets of sizes ranging from metres to tens of kilometres that orbit the Sun and whose orbits come close to that of Earth's. Of the more than 600 000 known asteroids in our Solar System, more than 20 000 are NEOs. </p>
-    <p>NEOs could potentially hit our planet and, depending on their size, produce considerable damage. </p>
-    <p>The table below is updated multiple times per day and lists all the known upcoming close approaches between the Earth and NEO asteroids that will be closer than 0.05 astronomical units and will happen in the following 60 days of the date selected</p>
-
-    <form action="/dateSearch" method="post">
-        <input type="date" required name="date" value="<%= date %>">
-        <input id="searchDate" type="submit">
-    </form>
-    
-    <p>Count: <%= data.count %></p>
-
-    <% if (data.count > 0) { %>
-    <div class="container">
-        <div class="flex">
-            <table id="ca-data">
-                <tr>
-                    <thead>
-                        <th>Object</th>
-                        <th>Close Approach (CA) Date</th>
-                        <th>CA Distance (au)</th>
-                        <th>Velocity (km/s)</th>
-                        <th>Animations</th>
-                    </thead>
-                </tr>
-                <tbody>
-                <% for (let i = 0; i < data.data.length; i += 1) { %>
-                    <tr data-object="<%= data.data[i][0].replace(/ /, '-') %>">
-                        <td class="cell-nowrap"><%= data.data[i][0] %></td>
-                        <td><span class="cell-nowrap"><%= data.data[i][3] %></span> <span class="cell-nowrap date-error"> &#177;<%= data.data[i][9] %></span></td>
-                        <td><%= Math.round(data.data[i][4] * 149597870.7).toLocaleString(undefined, { minimumFractionDigits: 0 }) %></td>
-                        <td><%= parseFloat(data.data[i][7]).toFixed(2) %></td>
-                        <td>
-                            <a target="_blank" href="https://cneos.jpl.nasa.gov/ca/ov/#load=&desig=<%= data.data[i][0].replace(/ /, '%20') %>&cajd=<%= data.data[i][2] %>">1</a>
-                            <a target="_blank" href="https://ssd.jpl.nasa.gov/ov/#load=<%= data.data[i][0].replace(/ /, '%20') %>&lookat=SSB&interval=3&eclipticgrid=false&">2</a>
-                        </td>
+        <form action="/dateSearch" method="post">
+            <input type="date" required name="date" value="<%= date %>">
+            <input id="searchDate" type="submit">
+        </form>
+        
+        <p>Count: <%= data.count %></p>
+        <% if (data.count > 0) { %>
+        <div class="container">
+            <div class="flex">
+                <table id="ca-data">
+                    <tr>
+                        <thead>
+                            <th>Object</th>
+                            <th>Close Approach (CA) Date</th>
+                            <th>CA Distance<br>(km)</th>
+                            <th>Velocity<br>(km/s)</th>
+                            <th>Animations</th>
+                        </thead>
                     </tr>
-                <% } %>
-                </tbody>
-            </table>
+                    <tbody>
+                    <% for (let i = 0; i < data.data.length; i += 1) { %>
+                        <tr data-object="<%= data.data[i][0].replace(/ /, '-') %>">
+                            <td class="cell-nowrap"><%= data.data[i][0] %></td>
+                            <td><span class="cell-nowrap"><%= data.data[i][3] %></span> <span class="cell-nowrap date-error"> &#177;<%= data.data[i][9] %></span></td>
+                            <td><%= Math.round(data.data[i][4] * 149597870.7).toLocaleString(undefined, { minimumFractionDigits: 0 }) %></td>
+                            <td><%= parseFloat(data.data[i][7]).toFixed(2) %></td>
+                            <td>
+                                <a target="_blank" href="https://cneos.jpl.nasa.gov/ca/ov/#load=&desig=<%= data.data[i][0].replace(/ /, '%20') %>&cajd=<%= data.data[i][2] %>">Link 1</a>
+                                <a target="_blank" href="https://ssd.jpl.nasa.gov/ov/#load=<%= data.data[i][0].replace(/ /, '%20') %>&lookat=SSB&interval=3&eclipticgrid=false&">Link 2</a>
+                            </td>
+                        </tr>
+                    <% } %>
+                    </tbody>
+                </table>
+            </div>
+            <div id="object-data" class="flex object-data"></div>
         </div>
-
-
-        <div id="object-data" class="flex object-data"></div>
+        <% } %>
     </div>
-    <% } %>
 
     
 
