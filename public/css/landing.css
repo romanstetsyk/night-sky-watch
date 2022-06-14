@@ -25,6 +25,10 @@ body{
     text-align:center;
 }
 
+.number {
+    white-space: nowrap;
+}
+
 .content .logo{
     width:13%;
     position:absolute;

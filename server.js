@@ -49,7 +49,7 @@ app.get('/', (request, response) => {
     response.render('landing.ejs');
 })
 
-app.get('/table', async (request, response) => {
+app.get('/table/', async (request, response) => {
 
     let dateMin = request.query.date ? request.query.date : addDays(0);
     let dateMax = addDays(60, dateMin);
