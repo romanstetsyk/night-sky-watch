@@ -45,7 +45,11 @@ async function getNeowsData(spkid) {
     return data;
 }
 
-app.get('/', async (request, response) => {
+app.get('/', (request, response) => {
+    response.render('landing.ejs');
+})
+
+app.get('/table', async (request, response) => {
 
     let dateMin = request.query.date ? request.query.date : addDays(0);
     let dateMax = addDays(60, dateMin);
@@ -59,7 +63,7 @@ app.get('/', async (request, response) => {
 app.post('/dateSearch', (request, response) => {
     let date = request.body.date
     // To redirect in browser the request should be made using html <form>
-    return response.redirect('/?date=' + date);
+    return response.redirect('/table/?date=' + date);
 })
 
 app.post('/animation', async (request, response) => {

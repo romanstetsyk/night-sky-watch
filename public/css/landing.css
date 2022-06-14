@@ -1,0 +1,90 @@
+*{
+    box-sizing:border-box;
+}
+    
+:root{
+    --white:#FFF;
+    --primary:#5693d5;
+}
+
+body{
+    width:100vw;
+    height:100vh;
+    overflow:hidden !important;
+    font-family: monospace;
+    background: linear-gradient(rgba(1,1,1,.2), rgba(1, 1, 1, 0.3)), url("../images/background.jpeg");
+    background-position:center;
+    background-size:cover;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--white);
+}
+
+.content{
+    width:70%;
+    text-align:center;
+}
+
+.content .logo{
+    width:13%;
+    position:absolute;
+    top:1rem;
+    left:2vw;
+}
+
+.content h1{
+    font-size:4rem;
+    font-weight:900;
+    padding: 1rem;
+}
+
+.content h2{
+    font-size: 1.5rem;
+    font-weight:200;
+    padding: 1rem;
+}
+
+.searchBox {
+    border-radius: 40px;
+    padding: 2rem;
+}
+
+.searchButton:hover {
+    background: white;
+    color : #2f3640;
+}
+
+.searchButton {
+    font-family: inherit;
+    font-size: 1.5rem;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius:40px;
+    background:transparent;
+    transition: 0.4s;
+    font-weight:600;
+    border:1px solid var(--white);
+}
+
+@media screen and (max-width: 1020px) {
+    .content h1{
+        font-size:4rem;
+    }
+}
+
+@media screen and (max-width: 820px) {
+    .content{
+        width:100%;
+        padding: 1rem;
+    }
+    .content .logo{
+        width:20%;
+    }
+    .content h1{
+        font-size: 3.5rem;
+    }
+    .content h2{
+        font-size: 1.5rem;
+    }
+}
