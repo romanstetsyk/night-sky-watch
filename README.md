@@ -1,5 +1,5 @@
 # Near Earth Objects
-Application that monitors asteroid and commet close approaches to Earth.
+Application that monitors asteroid and comet close approaches to Earth.
 
 Live version: https://asteroids-approaches.herokuapp.com/
 
