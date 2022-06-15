@@ -27,7 +27,7 @@ function addDays(deltaDays, dateMin) {
 }
 
 async function getCloseApproachData(dateMin, dateMax) {
-    const apiResponse = await fetch(`https://ssd-api.jpl.nasa.gov/cad.api?date-min=${dateMin}&date-max=${dateMax}&body=Earth&fullname=true&dist-max=0.1`);
+    const apiResponse = await fetch(`https://ssd-api.jpl.nasa.gov/cad.api?date-min=${dateMin}&date-max=${dateMax}&body=Earth&fullname=true&dist-max=0.05`);
     const data = await apiResponse.json();
     return data;
 }

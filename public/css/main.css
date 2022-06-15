@@ -1,9 +1,9 @@
-@import url(https://fonts.googleapis.com/css?family=Muli);
-@import url(https://fonts.googleapis.com/css?family=Gentium+Basic);
-
-
 * {
     box-sizing: border-box;
+}
+
+:root {
+  --white: #BBC;
 }
 
 /* --- The Table Structure --- */
@@ -12,43 +12,35 @@ table {
   vertical-align: middle;
 }
 td, th {
-  border: 1px solid #eee;
+  border: 1px solid var(--white);
 }
 
 th {
   font-weight: 700;
 }
 
-/* top-left border-radius */
-table tr:first-child th:first-child {
-  border-top-left-radius: 6px;
-}
-
-/* top-right border-radius */
-table tr:first-child th:last-child {
-  border-top-right-radius: 6px;
-}
-
-/* bottom-left border-radius */
-table tr:last-child td:first-child {
-  border-bottom-left-radius: 6px;
-}
-
-/* bottom-right border-radius */
-table tr:last-child td:last-child {
-  border-bottom-right-radius: 6px;
+#ca-data tr:hover {
+  cursor: pointer;
+  background-color: rgb(99, 99, 99);
 }
 
 /* -- The Stlyes -- */
 body {
-  margin: 30px;
-  background: #ECEAE3;
-  background: linear-gradient(to right, rgba(1,1,1,0.5), rgba(1, 1, 1, 0.8)), url("../images/stars.jpeg");
-  font-family: monospace;
-  color: white;
+  margin: 2em 0;
+  background: linear-gradient(to right, rgba(1,1,1,0), rgba(1, 1, 1, 0)), url("../images/stars.jpeg");
+  font-family: monospace, monospace;
+  color: #bbc;
+  box-shadow: inset 0 0 0 1000px rgba(0,0,0,.7);
+
 }
 .description {
+  position: relative;
   margin: 0.5rem 0;
+  padding-bottom: 0.5rem;
+}
+
+.count {
+  padding: 1rem 0;
 }
 .content {
   width: 85%;
@@ -74,15 +66,29 @@ th, td{
 
 .container {
     display: flex;
-    justify-content: flex-start;
-    gap: 5rem;
+    justify-content: space-between;
     flex-wrap: wrap-reverse;
     align-items: start;
-    margin: 3rem 0;
 }
 
 a {
-  color: #eee;
+  color: var(--white);
+}
+a:hover {
+  color: #222;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+.basic-data {
+  padding: 2rem 0;
+}
+
+.basic-data > li {
+  padding: 0.25rem 0;
+  font-size: 1.25rem;
 }
 
 .table-ca {
@@ -120,6 +126,8 @@ h1 {
 h1 {
   text-transform: uppercase;
 }
+
+.description:before,
 h1:before {
   position: absolute;
   left: 0;
@@ -128,4 +136,36 @@ h1:before {
   height: 2px;
   content: "";
   background-color: #c50000;
+}
+
+
+.button {
+  text-decoration: none;
+  font-family: inherit;
+  /* font-size: 1.5rem; */
+  color: white;
+  padding: 0.5rem 1rem;
+  /* border-radius:40px; */
+  background:transparent;
+  transition: 0.2s;
+  /* font-weight:600; */
+  border:1px solid var(--white);
+}
+.button:hover {
+  background: white;
+  color : #2f3640;
+}
+
+
+@media screen and (max-width: 768px) {
+  .content {
+    padding: 0 10px;
+    width: 100%;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
 }

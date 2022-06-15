@@ -1,11 +1,11 @@
-<ul>
-    <li>Name: <%= data.object.fullname %></li>
+<ul class="basic-data">
+    <li><h2>Name: <%= data.object.fullname %></h2></li>
     <li>Potentially Hazardous Asteroid: <%= data.object.pha ? 'Yes' : 'No' %></li>
     <li>SPKID: <%= data.object.spkid %></li>
-    <li>Kind: <%= data.object.kind %></li>
+    <li>Kind: <%= {'au': 'Unnumbered Asteroid', 'an': 'Numbered Asteroid', 'cn': 'Numbered Comet', 'cu': 'Unnumbered Comet'}[data.object.kind] %></li>
     <% if (neows.status !== 404) { %>
         <li>First observation: <%= neows.orbital_data.first_observation_date %></li>
-        <li>Orbit determination date: <%= neows.orbital_data.orbit_determination_date %></li>
+        <li>Orbit determination: <%= neows.orbital_data.orbit_determination_date %></li>
         <li>Estimated diameter: <%= Math.trunc(neows.estimated_diameter.meters.estimated_diameter_min) %> - <%= Math.trunc(neows.estimated_diameter.meters.estimated_diameter_max) %> m</li>
     <% } %>
 </ul>
@@ -15,7 +15,7 @@
     <table>
         <tr>
             <thead>
-                <th>Close Approach Date</th>
+                <th>Close Approach <br>Date</th>
                 <th>Relative <br> Velocity (km/s)</th>
                 <th>Miss Distance <br> (km)</th>
                 <!-- <th>Orbiting Body</th> -->
