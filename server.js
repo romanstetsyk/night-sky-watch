@@ -83,6 +83,8 @@ app.post('/getobjectdata', async (request, response) => {
 
     const neowsData = await getNeowsData(spkid);
 
+    console.log(neowsData.status);
+
     return response.render('objectdata.ejs', {data: objectData, neows: neowsData});
 })
 
