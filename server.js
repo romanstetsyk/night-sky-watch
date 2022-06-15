@@ -86,4 +86,4 @@ app.post('/getobjectdata', async (request, response) => {
 })
 
 
-app.listen(8000, () => console.log('running...'));
+app.listen(process.env.PORT || 8000, () => console.log('running...'));
