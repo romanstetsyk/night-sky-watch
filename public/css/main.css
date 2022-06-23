@@ -138,26 +138,13 @@ h1:before {
   background-color: #c50000;
 }
 
-.loader {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-40%, -50%);
-  width: 250px;
-  height: 250px;
-  background: url('../images/spinner.gif') no-repeat;
-}
-
 .button {
   text-decoration: none;
   font-family: inherit;
-  /* font-size: 1.5rem; */
   color: var(--white);
   padding: 0.5rem 1rem;
-  /* border-radius:40px; */
   background:transparent;
   transition: 0.2s;
-  /* font-weight:600; */
   border:1px solid var(--white);
 }
 .button:hover {

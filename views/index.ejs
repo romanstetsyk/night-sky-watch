@@ -25,54 +25,8 @@
         </div>
 
         <section id="cadata"></section>
-        <% /* %>
-
-        <form action="/dateSearch" method="post">
-            <input type="date" required name="date" value="<%= date %>">
-            <input id="searchDate" type="submit" class="button">
-        </form>
-
-        <% if (data.count > 0) { %>
-        
-        <div class="container">
-            <div class="flex">
-                <p class="count">Count: <%= data.count %></p>
-                <table id="ca-data">
-                    <thead>
-                        <tr>
-                            <th>Object</th>
-                            <th>Close Approach (CA) Date</th>
-                            <th>CA Distance<br>(km)</th>
-                            <th>Velocity<br>(km/s)</th>
-                            <th>Animations</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <% for (let i = 0; i < data.data.length; i += 1) { %>
-                        <tr data-object="<%= data.data[i][0].replace(/ /, '-') %>">
-                            <td class="cell-nowrap"><%= data.data[i][0] %></td>
-                            <td><span class="cell-nowrap"><%= data.data[i][3] %></span> <span class="cell-nowrap date-error"> &#177;<%= data.data[i][9] %></span></td>
-                            <td><%= Math.round(data.data[i][4] * 149597870.7).toLocaleString(undefined, { minimumFractionDigits: 0 }) %></td>
-                            <td><%= parseFloat(data.data[i][7]).toFixed(2) %></td>
-                            <td>
-                                <a target="_blank" href="https://cneos.jpl.nasa.gov/ca/ov/#load=&desig=<%= data.data[i][0].replace(/ /, '%20') %>&cajd=<%= data.data[i][2] %>">Link1</a>
-                                <a target="_blank" href="https://ssd.jpl.nasa.gov/ov/#load=<%= data.data[i][0].replace(/ /, '%20') %>&lookat=SSB&interval=11&eclipticgrid=false&">Link2</a>
-                            </td>
-                        </tr>
-                    <% } %>
-                    </tbody>
-                </table>
-            </div>
-            <div id="object-data" class="flex object-data"></div>
-        </div>
-        <% } else { %>
-        <p class="count">Count: <%= data.count %></p>
-        <% } %>
-
-        <% */ %> 
     </div>
 
-    <div id="loader"></div>
     <script src="/js/main.js"></script>
 </body>
 </html>
