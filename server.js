@@ -51,16 +51,8 @@ app.get('/', (request, response) => {
 })
 
 app.get('/table/', async (request, response) => {
-
-    // console.log(data);
     response.render('index.ejs');
 });
-
-app.post('/dateSearch', (request, response) => {
-    let date = request.body.date
-    // To redirect in browser the request should be made using html <form>
-    return response.redirect('/getcadata/?date=' + date);
-})
 
 app.post('/animation', async (request, response) => {
     let name = request.body.name.replace(/-/, ' ');
@@ -71,25 +63,18 @@ app.post('/animation', async (request, response) => {
 })
 
 app.post('/getcadata/', async (request, response) => {
-
     let dateMin = request.query.date ? request.query.date : addDays(0);
     let dateMax = addDays(60, dateMin);
-    
     let data = await getCloseApproachData(dateMin, dateMax);
-
     return response.render('cadata.ejs', {data: data, date: dateMin})
 })
 
 app.post('/getobjectdata', async (request, response) => {
     let name = request.body.name.replace(/-/, '%20');
     const objectData = await getObjectData(name);
-
     const spkid = await objectData.object.spkid;
-
     const neowsData = await getNeowsData(spkid);
-
     return response.render('objectdata.ejs', {data: objectData, neows: neowsData});
 })
-
 
 app.listen(process.env.PORT || 8000, () => console.log('running...'));
