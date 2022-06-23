@@ -138,6 +138,15 @@ h1:before {
   background-color: #c50000;
 }
 
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 250px;
+  background: url('../images/spinner.gif') no-repeat;
+}
 
 .button {
   text-decoration: none;

@@ -19,6 +19,11 @@
             <p>The table below is updated multiple times per day and lists all the known upcoming close approaches between the Earth and NEO asteroids that will be closer than 0.05 astronomical units and will happen in the following 60 days of the date selected</p>
         </section>
 
+        <div>
+            <input id="dateInput" type="date" required name="date">
+            <button id="searchDate" type="button" class="button">Submit</button>
+        </div>
+
         <section id="cadata"></section>
         <% /* %>
 
@@ -67,7 +72,7 @@
         <% */ %> 
     </div>
 
-
+    <div id="loader"></div>
     <script src="/js/main.js"></script>
 </body>
 </html>

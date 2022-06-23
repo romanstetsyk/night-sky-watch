@@ -1,36 +1,36 @@
-window.onload = getCAdata();
+const wait = delay => new Promise(resolve => setTimeout(resolve, delay));
 
-async function getCAdata(date) {
-    date = date ? `?date=${date}` : '';
-    console.log('/getcadata/' + date);
+window.onload = document.querySelector('#dateInput').value = new Date().toISOString().split('T')[0];
+window.onload = getCAdata(document.querySelector('#dateInput').value);
+
+async function getCAdata() {
+    queryString = `?date=${document.querySelector('#dateInput').value}`;
     const cadata = document.querySelector('#cadata');
-    const resp = await fetch('/getcadata/' + date, {
+    document.querySelector('#loader').classList.add('loader');
+    const resp = await fetch('/getcadata/' + queryString, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         }
     });
     const data = await resp.text();
-    console.log(data);
     cadata.innerHTML = data;
-
+    document.querySelector('#loader').classList.remove('loader');
     document.querySelectorAll('[data-object]').forEach(e => e.addEventListener('click', openDetails));
-
-    document.querySelector('#searchDate').addEventListener('click', formHandler);
+    document.querySelector('#searchDate').addEventListener('click', getCAdata);
 }
 
-
-async function formHandler(event) {
-    const date = document.querySelector('#dateInput').value;
-    await getCAdata(date);
-}
 
 async function openDetails(event) {
+    
     document.querySelectorAll('.row-active').forEach(e => e.classList.remove('row-active'));
     let objName = event.currentTarget.getAttribute('data-object');
-    console.log(objName);
     const rowClicked = event.currentTarget;
     rowClicked.classList.add('row-active');
+    const div = document.querySelector('#object-data');
+
+    document.querySelector('#loader').classList.add('loader');
+
     const resp = await fetch('/getobjectdata', {
         method: 'POST',
         body: JSON.stringify({
@@ -42,8 +42,10 @@ async function openDetails(event) {
     });
     const data = await resp.text();
 
-    const div = document.querySelector('#object-data');
     div.innerHTML = data;
+
+    document.querySelector('#loader').classList.remove('loader');
+    
     window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
