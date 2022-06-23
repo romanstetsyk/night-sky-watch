@@ -52,19 +52,14 @@ app.get('/', (request, response) => {
 
 app.get('/table/', async (request, response) => {
 
-    let dateMin = request.query.date ? request.query.date : addDays(0);
-    let dateMax = addDays(60, dateMin);
-    
-    let data = await getCloseApproachData(dateMin, dateMax);
-
     // console.log(data);
-    response.render('index.ejs', {data: data, date: dateMin});
+    response.render('index.ejs');
 });
 
 app.post('/dateSearch', (request, response) => {
     let date = request.body.date
     // To redirect in browser the request should be made using html <form>
-    return response.redirect('/table/?date=' + date);
+    return response.redirect('/getcadata/?date=' + date);
 })
 
 app.post('/animation', async (request, response) => {
@@ -75,6 +70,16 @@ app.post('/animation', async (request, response) => {
     return response.json({'url': `https://cneos.jpl.nasa.gov/ca/ov/#load=&desig=${row[0]}&cajd=${row[2]}&`});
 })
 
+app.post('/getcadata/', async (request, response) => {
+
+    let dateMin = request.query.date ? request.query.date : addDays(0);
+    let dateMax = addDays(60, dateMin);
+    
+    let data = await getCloseApproachData(dateMin, dateMax);
+
+    return response.render('cadata.ejs', {data: data, date: dateMin})
+})
+
 app.post('/getobjectdata', async (request, response) => {
     let name = request.body.name.replace(/-/, '%20');
     const objectData = await getObjectData(name);
@@ -82,8 +87,6 @@ app.post('/getobjectdata', async (request, response) => {
     const spkid = await objectData.object.spkid;
 
     const neowsData = await getNeowsData(spkid);
-
-    console.log(neowsData.status);
 
     return response.render('objectdata.ejs', {data: objectData, neows: neowsData});
 })

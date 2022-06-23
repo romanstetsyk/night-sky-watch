@@ -1,24 +1,29 @@
-document.querySelectorAll('[data-object]').forEach(e => e.addEventListener('click', openDetails));
+window.onload = getCAdata();
 
-// async function openAnimation(event) {
-//     let objName = event.target.getAttribute('data-object');
-//     if (!objName) return;
-//     const resp = await fetch('/animation', {
-//         method: 'POST',
-//         body: JSON.stringify({
-//             'name': objName
-//         }),
-//         headers: {
-//             'Content-Type': 'application/json',
-//             'Access-Control-Allow-Origin': '*'
-//         },
-//     })
-//     const data = await resp.json();
-//     console.log(data);
+async function getCAdata(date) {
+    date = date ? `?date=${date}` : '';
+    console.log('/getcadata/' + date);
+    const cadata = document.querySelector('#cadata');
+    const resp = await fetch('/getcadata/' + date, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+    const data = await resp.text();
+    console.log(data);
+    cadata.innerHTML = data;
 
-//     window.open(data.url, '_blank')
-// }
+    document.querySelectorAll('[data-object]').forEach(e => e.addEventListener('click', openDetails));
 
+    document.querySelector('#searchDate').addEventListener('click', formHandler);
+}
+
+
+async function formHandler(event) {
+    const date = document.querySelector('#dateInput').value;
+    await getCAdata(date);
+}
 
 async function openDetails(event) {
     document.querySelectorAll('.row-active').forEach(e => e.classList.remove('row-active'));
@@ -41,3 +46,4 @@ async function openDetails(event) {
     div.innerHTML = data;
     window.scrollTo({top: 0, behavior: 'smooth'});
 }
+
