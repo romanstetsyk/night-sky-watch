@@ -1,0 +1,72 @@
+@use "../utils/variables" as v;
+
+.landing .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.landing__button {
+  margin-top: 1rem;
+}
+
+.landing {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto; // When zoom x4 the content doesn't fit on the background
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
+    url("../images/background.jpeg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  color: v.$white-white;
+
+  &__heading {
+    font-size: 2rem;
+    font-weight: 900;
+    text-align: center;
+    margin-top: auto;
+  }
+
+  &__subheading {
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  &__copyright {
+    margin-top: auto;
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (min-width: v.$bp-med-2) {
+  .landing {
+    &__heading {
+      font-size: 3rem;
+    }
+
+    &__subheading {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+@media screen and (min-width: v.$bp-lg) {
+  .landing {
+    &__heading {
+      font-size: 4rem;
+    }
+
+    &__subheading {
+      font-size: 1.5rem;
+    }
+  }
+}

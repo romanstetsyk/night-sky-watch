@@ -1,0 +1,13 @@
+@use "../utils/variables" as v;
+
+.container {
+  max-width: 90em;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media screen and (min-width: v.$bp-med-1) {
+  .container {
+    width: 75%;
+  }
+}

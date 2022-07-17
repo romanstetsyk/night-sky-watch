@@ -1,0 +1,27 @@
+@use "../utils/variables" as v;
+
+.button {
+  display: block;
+  max-width: fit-content;
+  text-decoration: none;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: v.$white-white;
+  padding: 0.4em 1.25em;
+  border-radius: 1em;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5));
+  border: 1px solid v.$white-white;
+  transition: 0.4s;
+}
+
+.button:hover {
+  background: v.$white-white;
+  color: #2f3640;
+}
+
+@media screen and (min-width: v.$bp-med-2) {
+  .button {
+    font-size: 1.5rem;
+  }
+}
