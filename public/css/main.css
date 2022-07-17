@@ -286,7 +286,8 @@ p {
   width: 100vw;
   height: 100vh;
   overflow-y: auto;
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url("../images/background.jpeg");
+  background-color: #212121;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url("../images/landing-bg-sm.jpeg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -325,6 +326,21 @@ p {
   }
   .landing__subheading {
     font-size: 1.5rem;
+  }
+}
+@media screen and (min-width: 40em) {
+  .landing {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url("../images/landing-bg-med.jpeg");
+  }
+}
+@media screen and (min-device-pixel-ratio: 2), screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi), screen and (min-resolution: 2dppx) {
+  .landing {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url("../images/landing-bg-med.jpeg");
+  }
+}
+@media screen and (min-device-pixel-ratio: 2) and (min-width: 40em), screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 40em), screen and (min-resolution: 192dpi) and (min-width: 40em), screen and (min-resolution: 2dppx) and (min-width: 40em) {
+  .landing {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url("../images/landing-bg-lg.jpeg");
   }
 }
 .button {

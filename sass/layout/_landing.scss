@@ -15,9 +15,10 @@
 .landing {
   width: 100vw;
   height: 100vh;
-  overflow-y: auto; // When zoom x4 the content doesn't fit on the background
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
-    url("../images/background.jpeg");
+  overflow-y: auto; // When zoom x5 the content doesn't fit on the background
+  background-color: #212121;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
+    url("../images/landing-bg-sm.jpeg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -68,5 +69,30 @@
     &__subheading {
       font-size: 1.5rem;
     }
+  }
+}
+
+@media screen and (min-width: v.$bp-med-1) {
+  .landing {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
+      url("../images/landing-bg-med.jpeg");
+  }
+}
+
+@media screen and (min-device-pixel-ratio: 2),
+  screen and (min-resolution: 192dpi),
+  screen and (min-resolution: 2dppx) {
+  .landing {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
+      url("../images/landing-bg-med.jpeg");
+  }
+}
+
+@media screen and (min-device-pixel-ratio: 2) and (min-width: v.$bp-med-1),
+  screen and (min-resolution: 192dpi) and (min-width: v.$bp-med-1),
+  screen and (min-resolution: 2dppx) and (min-width: v.$bp-med-1) {
+  .landing {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
+      url("../images/landing-bg-lg.jpeg");
   }
 }
