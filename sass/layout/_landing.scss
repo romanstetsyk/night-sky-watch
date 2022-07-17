@@ -19,6 +19,8 @@
   background-color: #212121;
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
     url("../images/landing-bg-sm.jpeg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
+    url("../images/landing-bg-sm.webp");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -76,6 +78,8 @@
   .landing {
     background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
       url("../images/landing-bg-med.jpeg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
+      url("../images/landing-bg-med.webp");
   }
 }
 
@@ -85,6 +89,8 @@
   .landing {
     background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
       url("../images/landing-bg-med.jpeg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
+      url("../images/landing-bg-med.webp");
   }
 }
 
@@ -94,5 +100,7 @@
   .landing {
     background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
       url("../images/landing-bg-lg.jpeg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
+      url("../images/landing-bg-lg.webp");
   }
 }
