@@ -9,8 +9,7 @@ Use a better box model (opinionated).
 *,
 ::before,
 ::after {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /**
@@ -22,8 +21,7 @@ html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
   -moz-tab-size: 4; /* 3 */
-  -o-tab-size: 4;
-     tab-size: 4; /* 3 */
+  tab-size: 4; /* 3 */
 }
 
 /*
@@ -60,8 +58,7 @@ Text-level semantics
 Add the correct text decoration in Chrome, Edge, and Safari.
 */
 abbr[title] {
-  -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted;
+  text-decoration: underline dotted;
 }
 
 /**
@@ -278,19 +275,10 @@ summary {
   }
 }
 .landing .container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 2rem;
 }
 
@@ -303,21 +291,14 @@ summary {
   height: 100vh;
   overflow-y: auto;
   background-color: #212121;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.2)), to(rgba(0, 0, 0, 0.3))), url("../images/landing-bg-sm.jpeg");
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url("../images/landing-bg-sm.jpeg");
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.2)), to(rgba(0, 0, 0, 0.3))), url("../images/landing-bg-sm.webp");
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url("../images/landing-bg-sm.webp");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
   color: #fff;
 }
 .landing__heading {
@@ -354,25 +335,19 @@ summary {
 }
 @media screen and (min-width: 40em) {
   .landing {
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.2)), to(rgba(0, 0, 0, 0.3))), url("../images/landing-bg-med.jpeg");
     background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url("../images/landing-bg-med.jpeg");
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.2)), to(rgba(0, 0, 0, 0.3))), url("../images/landing-bg-med.webp");
     background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url("../images/landing-bg-med.webp");
   }
 }
-@media screen and (min-device-pixel-ratio: 2), screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi), screen and (min-resolution: 2dppx) {
+@media screen and (min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi), screen and (min-resolution: 2dppx) {
   .landing {
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.2)), to(rgba(0, 0, 0, 0.3))), url("../images/landing-bg-med.jpeg");
     background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url("../images/landing-bg-med.jpeg");
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.2)), to(rgba(0, 0, 0, 0.3))), url("../images/landing-bg-med.webp");
     background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url("../images/landing-bg-med.webp");
   }
 }
-@media screen and (min-device-pixel-ratio: 2) and (min-width: 40em), screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 40em), screen and (min-resolution: 192dpi) and (min-width: 40em), screen and (min-resolution: 2dppx) and (min-width: 40em) {
+@media screen and (min-device-pixel-ratio: 2) and (min-width: 40em), screen and (min-resolution: 192dpi) and (min-width: 40em), screen and (min-resolution: 2dppx) and (min-width: 40em) {
   .landing {
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.2)), to(rgba(0, 0, 0, 0.3))), url("../images/landing-bg-lg.jpeg");
     background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url("../images/landing-bg-lg.jpeg");
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.2)), to(rgba(0, 0, 0, 0.3))), url("../images/landing-bg-lg.webp");
     background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url("../images/landing-bg-lg.webp");
   }
 }
@@ -410,8 +385,6 @@ summary {
 }
 
 .date-picker {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 .date-picker .button {
@@ -419,11 +392,8 @@ summary {
 }
 
 .ca-data .container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   padding-right: 0;
 }
 
@@ -442,16 +412,10 @@ summary {
 .wrapper {
   min-height: 100vh;
   background-color: #000;
-  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.2)), to(rgba(0, 0, 0, 0.7))), url("../images/stars.jpeg");
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7)), url("../images/stars.jpeg");
   background-repeat: no-repeat;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
 .wrapper__copyright {
   margin-top: auto;
@@ -461,8 +425,6 @@ summary {
 
 .button {
   display: block;
-  max-width: -webkit-fit-content;
-  max-width: -moz-fit-content;
   max-width: fit-content;
   text-decoration: none;
   font-family: inherit;
@@ -471,10 +433,8 @@ summary {
   color: #fff;
   padding: 0.4em 1.25em;
   border-radius: 1em;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.4)), to(rgba(0, 0, 0, 0.5)));
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5));
   border: 1px solid #fff;
-  -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 
@@ -524,8 +484,7 @@ summary {
   height: 5rem;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   background-image: url("../images/spinner.svg");
   background-size: cover;
   background-repeat: no-repeat;
