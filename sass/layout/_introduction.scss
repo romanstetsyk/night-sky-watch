@@ -1,0 +1,54 @@
+@use "../utils/variables" as v;
+
+// Placeholder for <details> ::before and ::after
+%common {
+  position: absolute;
+  content: "";
+  left: 0;
+  width: 8rem;
+  height: 2px;
+  background-color: #c50000;
+}
+
+.introduction {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color: v.$white-white;
+
+  &__heading {
+    font-size: 1.25rem;
+    text-transform: uppercase;
+  }
+
+  &__container {
+    padding: 0.5rem 0;
+    margin: 0.5rem 0;
+    position: relative;
+
+    &::before {
+      @extend %common;
+      top: 0;
+    }
+
+    &::after {
+      @extend %common;
+      bottom: 0;
+    }
+  }
+
+  &__toggle {
+    cursor: pointer;
+  }
+
+  &__paragraph {
+    padding-top: 0.5rem;
+  }
+}
+
+.date-picker {
+  display: flex;
+
+  & .button {
+    font-size: 1rem;
+  }
+}

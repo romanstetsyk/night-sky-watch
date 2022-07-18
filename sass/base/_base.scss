@@ -1,7 +1,10 @@
+@use "../utils/variables" as v;
+
 body {
   font-family: "Courier New", Courier, "Lucida Sans Typewriter",
     "Lucida Typewriter", monospace;
   font-style: normal;
+  color: v.$white-white;
 }
 
 ul {

@@ -1,9 +1,9 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 :root {
-  --white: #DDD;
+  --white: #ddd;
 }
 
 /* --- The Table Structure --- */
@@ -11,7 +11,8 @@
 table {
   vertical-align: middle;
 }
-td, th {
+td,
+th {
   border: 1px solid var(--white);
 }
 
@@ -27,11 +28,11 @@ th {
 /* -- The Stlyes -- */
 body {
   margin: 2em 0;
-  background: linear-gradient(to right, rgba(1,1,1,0), rgba(1, 1, 1, 0)), url("../images/stars.jpeg");
+  background: linear-gradient(to right, rgba(1, 1, 1, 0), rgba(1, 1, 1, 0)),
+    url("../images/stars.jpeg");
   font-family: monospace, monospace;
   color: var(--white);
-  box-shadow: inset 0 0 0 1000px rgba(0,0,0,.7);
-
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.7);
 }
 .description {
   position: relative;
@@ -52,23 +53,23 @@ body {
   padding: 0.5rem 0;
 }
 
-
-th, td{
+th,
+td {
   padding: 8px 10px;
 }
 
 .cell-nowrap {
-    white-space: nowrap;
+  white-space: nowrap;
 }
 .date-error {
-    font-size: 0.75em;
+  font-size: 0.75em;
 }
 
 .container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap-reverse;
-    align-items: start;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap-reverse;
+  align-items: start;
 }
 
 a {
@@ -92,26 +93,25 @@ h2 {
 }
 
 .table-ca {
-    max-height: 500px;
-    overflow:scroll;
-    display: inline-block;
+  max-height: 500px;
+  overflow: scroll;
+  display: inline-block;
 }
 
-.flex {
-    overflow-y: auto;
-    height: 100%;
+.data__tables {
+  overflow-y: auto;
+  height: 100%;
 }
 
-.row-active > *{
-    background: grey;
+.row-active > * {
+  background: grey;
 }
 
 .object-data {
-    margin-bottom: 5rem;
+  margin-bottom: 5rem;
 }
 
-
-/* === BASE HEADING === */ 
+/* === BASE HEADING === */
 
 h1 {
   position: relative;
@@ -143,15 +143,14 @@ h1:before {
   font-family: inherit;
   color: var(--white);
   padding: 0.5rem 1rem;
-  background:transparent;
+  background: transparent;
   transition: 0.2s;
-  border:1px solid var(--white);
+  border: 1px solid var(--white);
 }
 .button:hover {
   background: white;
-  color : #2f3640;
+  color: #2f3640;
 }
-
 
 @media screen and (max-width: 768px) {
   .content {

@@ -244,6 +244,7 @@ summary {
 body {
   font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
   font-style: normal;
+  color: #fff;
 }
 
 ul {
@@ -370,6 +371,73 @@ p {
     background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url("../images/landing-bg-lg.webp");
   }
 }
+.introduction__container::after, .introduction__container::before {
+  position: absolute;
+  content: "";
+  left: 0;
+  width: 8rem;
+  height: 2px;
+  background-color: #c50000;
+}
+
+.introduction {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color: #fff;
+}
+.introduction__heading {
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+.introduction__container {
+  padding: 0.5rem 0;
+  margin: 0.5rem 0;
+  position: relative;
+}
+.introduction__container::before {
+  top: 0;
+}
+.introduction__container::after {
+  bottom: 0;
+}
+.introduction__toggle {
+  cursor: pointer;
+}
+.introduction__paragraph {
+  padding-top: 0.5rem;
+}
+
+.date-picker {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.date-picker .button {
+  font-size: 1rem;
+}
+
+.wrapper {
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: #212121;
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.2)), to(rgba(0, 0, 0, 0.7))), url("../images/stars.jpeg");
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7)), url("../images/stars.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.wrapper__copyright {
+  margin-top: auto;
+  padding-bottom: 1rem;
+  padding-top: 3rem;
+}
+
 .button {
   display: block;
   max-width: -webkit-fit-content;
@@ -398,4 +466,8 @@ p {
   .button {
     font-size: 1.5rem;
   }
+}
+.data__table {
+  overflow-x: scroll;
+  width: 100%;
 }/*# sourceMappingURL=main.css.map */

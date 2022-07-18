@@ -6,32 +6,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Near-Earth objects (NEOs)</title>
-    <!-- <link rel="stylesheet" href="assets/css/reset.css"> -->
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/main.min.css">
 </head>
 
 <body>
-    <div class="content">
-        <h1>Asteroid Close Approach Data</h1>
+    <div class="wrapper">
+        <section class="introduction">
+            <div class="container">
+                <h1 class="introduction__heading">Asteroid Close Approach Data</h1>
 
-        <section class="description">
-            <p>Near-Earth objects (NEOs) are asteroids or comets of sizes ranging from metres to tens of kilometres that
-                orbit the Sun and whose orbits come close to that of Earth's. Of the more than 600&nbsp;000 known
-                asteroids in our Solar System, more than 20&nbsp;000 are NEOs. </p>
-            <p>NEOs could potentially hit our planet and, depending on their size, produce considerable damage. </p>
-            <p>The table below is updated multiple times per day and lists all the known upcoming close approaches
-                between the Earth and NEO asteroids that will be closer than 0.05 astronomical units and will happen in
-                the following 60 days of the date selected</p>
+                <details class="introduction__container">
+                    <summary class="introduction__toggle">Description</summary>
+                    <p class="introduction__paragraph">Near-Earth objects (NEOs) are asteroids or comets of sizes
+                        ranging from metres to tens of kilometres that orbit the Sun and whose orbits come close to that
+                        of Earth's. Of the more than 600&nbsp;000 known asteroids in our Solar System, more than
+                        20&nbsp;000 are NEOs.
+                    </p>
+                    <p class="introduction__paragraph">NEOs could potentially hit our planet and, depending on their
+                        size, produce considerable damage.
+                    </p>
+                    <p class="introduction__paragraph">The table below is updated multiple times per day and lists all
+                        the known upcoming close approaches between the Earth and NEO asteroids that will be closer than
+                        0.05 astronomical units and will happen in the following 60 days of the date selecte
+                    </p>
+                </details>
+
+
+                <div class="date-picker">
+                    <input id="dateInput" type="date" required name="date">
+                    <button id="searchDate" type="button" class="button">Search</button>
+                </div>
+            </div>
         </section>
 
-        <div>
-            <input id="dateInput" type="date" required name="date">
-            <button id="searchDate" type="button" class="button">Submit</button>
-        </div>
+        <section id="cadata" class="data"></section>
 
-        <section id="cadata"></section>
+        <p class="copyright wrapper__copyright">Created by</p>
     </div>
+
 
     <script src="/js/main.js"></script>
 </body>
