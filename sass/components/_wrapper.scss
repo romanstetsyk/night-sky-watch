@@ -1,14 +1,12 @@
 .wrapper {
-  min-width: 100vw;
   min-height: 100vh;
-  background-color: #212121;
+  background-color: #000;
   background-image: linear-gradient(
       to right,
       rgba(0, 0, 0, 0.2),
       rgba(0, 0, 0, 0.7)
     ),
     url("../images/stars.jpeg");
-  background-size: cover;
   background-repeat: no-repeat;
 
   display: flex;
