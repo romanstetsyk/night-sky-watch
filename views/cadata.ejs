@@ -1,47 +1,51 @@
 <% if (data.count> 0) { %>
 
     <div class="container">
-        <p class="data__count">Count: <%= data.count %>
+        <div id="object-data" class="ca-data__table-wrapper flex"></div>
+
+        <p class="ca-data__count">Count: <%= data.count %>
         </p>
 
-        <table class="table">
-            <thead class="table__head">
-                <tr class="table__row">
-                    <th class="table__col-title">Object</th>
-                    <th class="table__col-title">Close Approach (CA) Date</th>
-                    <th class="table__col-title">CA Distance<br>(km)</th>
-                    <th class="table__col-title">Velocity<br>(km/s)</th>
-                    <th class="table__col-title">Animations</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% for (let i=0; i < data.data.length; i +=1) { %>
-                    <tr data-object="<%= data.data[i][0].replace(/ /, '-') %>">
-                        <td class="cell-nowrap">
-                            <%= data.data[i][0] %>
-                        </td>
-                        <td><span class="cell-nowrap">
-                                <%= data.data[i][3] %>
-                            </span> <span class="cell-nowrap date-error"> &#177;<%= data.data[i][9] %></span></td>
-                        <td>
-                            <%= Math.round(data.data[i][4] * 149597870.7).toLocaleString(undefined, {
-                                minimumFractionDigits: 0 }) %>
-                        </td>
-                        <td>
-                            <%= parseFloat(data.data[i][7]).toFixed(2) %>
-                        </td>
-                        <td>
-                            <a target="_blank"
-                                href="https://cneos.jpl.nasa.gov/ca/ov/#load=&desig=<%= data.data[i][0].replace(/ /, '%20') %>&cajd=<%= data.data[i][2] %>">Link1</a>
-                            <a target="_blank"
-                                href="https://ssd.jpl.nasa.gov/ov/#load=<%= data.data[i][0].replace(/ /, '%20') %>&time=<%= (data.data[i][2] - 2440587.5)*86400000 %>&lookat=SSB&interval=11&eclipticgrid=false&">Link2</a>
-                        </td>
+        <div class="ca-data__table-wrapper">
+            <table class="table">
+                <thead class="table__head">
+                    <tr class="table__row">
+                        <th>Object</th>
+                        <th>Close Approach (CA) Date</th>
+                        <th>CA Distance<br>(km)</th>
+                        <th>Velocity<br>(km/s)</th>
+                        <th>Animations (new tab)</th>
                     </tr>
-                    <% } %>
-            </tbody>
-        </table>
-
-        <div id="object-data" class="flex object-data"></div>
+                </thead>
+                <tbody>
+                    <% for (let i=0; i < data.data.length; i +=1) { %>
+                        <tr data-object="<%= data.data[i][0].replace(/ /, '-') %>">
+                            <td class="table__cell-nowrap">
+                                <%= data.data[i][0] %>
+                            </td>
+                            <td><span class="table__cell-nowrap">
+                                    <%= data.data[i][3] %>
+                                </span> <span class="table__cell-nowrap table__deviation"> &#177;<%= data.data[i][9] %>
+                                </span>
+                            </td>
+                            <td>
+                                <%= Math.round(data.data[i][4] * 149597870.7).toLocaleString(undefined, {
+                                    minimumFractionDigits: 0 }) %>
+                            </td>
+                            <td>
+                                <%= parseFloat(data.data[i][7]).toFixed(2) %>
+                            </td>
+                            <td>
+                                <a class="table__link" target="_blank"
+                                    href="https://cneos.jpl.nasa.gov/ca/ov/#load=&desig=<%= data.data[i][0].replace(/ /, '%20') %>&cajd=<%= data.data[i][2] %>">Link1</a>
+                                <a class="table__link" target="_blank"
+                                    href="https://ssd.jpl.nasa.gov/ov/#load=<%= data.data[i][0].replace(/ /, '%20') %>&time=<%= (data.data[i][2] - 2440587.5)*86400000 %>&lookat=SSB&interval=11&eclipticgrid=false&">Link2</a>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <% } else { %>

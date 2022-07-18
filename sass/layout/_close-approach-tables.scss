@@ -1,0 +1,15 @@
+@use "../utils/variables" as v;
+
+.ca-data .container {
+  display: flex;
+  flex-wrap: wrap;
+  padding-right: 0;
+}
+
+.ca-data__count {
+  padding: 1rem 0;
+}
+
+.ca-data__table-wrapper {
+  overflow-x: auto;
+}

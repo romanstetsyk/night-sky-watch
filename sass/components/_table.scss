@@ -1,4 +1,26 @@
-.data__table {
-  overflow-x: scroll;
-  width: 100%;
+.table {
+  display: inline-table; // fixes dissapearing right padding
+  margin-right: 1rem;
+  border-collapse: collapse;
+
+  & th,
+  & td {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(33, 33, 33, 0.8);
+  }
+
+  &__cell-nowrap {
+    white-space: nowrap;
+  }
+
+  &__deviation {
+    font-size: 0.75em;
+  }
+
+  &__link {
+    display: block;
+    padding: 0.2rem;
+    color: inherit;
+  }
 }

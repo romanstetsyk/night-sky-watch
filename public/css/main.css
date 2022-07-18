@@ -416,6 +416,23 @@ p {
   font-size: 1rem;
 }
 
+.ca-data .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding-right: 0;
+}
+
+.ca-data__count {
+  padding: 1rem 0;
+}
+
+.ca-data__table-wrapper {
+  overflow-x: auto;
+}
+
 .wrapper {
   min-width: 100vw;
   min-height: 100vh;
@@ -467,7 +484,24 @@ p {
     font-size: 1.5rem;
   }
 }
-.data__table {
-  overflow-x: scroll;
-  width: 100%;
+.table {
+  display: inline-table;
+  margin-right: 1rem;
+  border-collapse: collapse;
+}
+.table th, .table td {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(33, 33, 33, 0.8);
+}
+.table__cell-nowrap {
+  white-space: nowrap;
+}
+.table__deviation {
+  font-size: 0.75em;
+}
+.table__link {
+  display: block;
+  padding: 0.2rem;
+  color: inherit;
 }/*# sourceMappingURL=main.css.map */

@@ -22,30 +22,33 @@
 
 <% if (neows.status !==404) { %>
     <div class="table-ca">
-        <table>
-            <tr>
-                <thead>
-                    <th>Close Approach <br>Date</th>
-                    <th>Relative <br> Velocity (km/s)</th>
-                    <th>Miss Distance <br> (km)</th>
-                    <!-- <th>Orbiting Body</th> -->
-                </thead>
-            </tr>
-            <% for (let obj of neows.close_approach_data) { %>
+        <details>
+            <summary>ca data for this object</summary>
+            <table>
                 <tr>
-                    <td>
-                        <%= obj.close_approach_date %>
-                    </td>
-                    <td>
-                        <%= parseFloat(obj.relative_velocity.kilometers_per_second).toFixed(2) %>
-                    </td>
-                    <td>
-                        <%= Math.round(obj.miss_distance.astronomical * 149597870.7).toLocaleString(undefined, {
-                            minimumFractionDigits: 0 }) %>
-                    </td>
-                    <!-- <td><%= obj.orbiting_body %></td> -->
+                    <thead>
+                        <th>Close Approach <br>Date</th>
+                        <th>Relative <br> Velocity (km/s)</th>
+                        <th>Miss Distance <br> (km)</th>
+                        <!-- <th>Orbiting Body</th> -->
+                    </thead>
                 </tr>
-                <% } %>
-        </table>
+                <% for (let obj of neows.close_approach_data) { %>
+                    <tr>
+                        <td>
+                            <%= obj.close_approach_date %>
+                        </td>
+                        <td>
+                            <%= parseFloat(obj.relative_velocity.kilometers_per_second).toFixed(2) %>
+                        </td>
+                        <td>
+                            <%= Math.round(obj.miss_distance.astronomical * 149597870.7).toLocaleString(undefined, {
+                                minimumFractionDigits: 0 }) %>
+                        </td>
+                        <!-- <td><%= obj.orbiting_body %></td> -->
+                    </tr>
+                    <% } %>
+            </table>
+        </details>
     </div>
     <% } %>
