@@ -5,28 +5,27 @@ window.onload = document.querySelector("#dateInput").value = new Date()
 // Load data for today on page load
 window.onload = getCAdata();
 
-function addLoader() {
-  const loader = document.createElement("div");
-  document.querySelector("body").appendChild(loader);
-  loader.id = "loader";
-  loader.classList.add("loader");
-  loader.style.position = "fixed";
-  loader.style.top = "50%";
-  loader.style.left = "50%";
-  loader.style.transform = "translate(-40%, -50%)";
-  loader.style.width = "100px";
-  loader.style.height = "100px";
-  loader.style.background =
-    "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHN0cm9rZT0iI2RkZCIgZmlsbD0iI2RkZCI+PGNpcmNsZSBjeD0iNCIgY3k9IjEyIiByPSIzIj48YW5pbWF0ZSBpZD0iYSIgYmVnaW49IjA7Yi5lbmQtMC4yNXMiIGF0dHJpYnV0ZU5hbWU9InIiIGR1cj0iMC43NXMiIHZhbHVlcz0iMzsuMjszIi8+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMyI+PGFuaW1hdGUgYmVnaW49ImEuZW5kLTAuNnMiIGF0dHJpYnV0ZU5hbWU9InIiIGR1cj0iMC43NXMiIHZhbHVlcz0iMzsuMjszIi8+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMjAiIGN5PSIxMiIgcj0iMyI+PGFuaW1hdGUgaWQ9ImIiIGJlZ2luPSJhLmVuZC0wLjQ1cyIgYXR0cmlidXRlTmFtZT0iciIgZHVyPSIwLjc1cyIgdmFsdWVzPSIzOy4yOzMiLz48L2NpcmNsZT48L3N2Zz4=') no-repeat";
+function addSpinner() {
+  const backdrop = document.createElement("div");
+  document.querySelector("body").appendChild(backdrop);
+  const spinner = document.createElement("div");
+  backdrop.appendChild(spinner);
+
+  spinner.id = "spinner";
+  backdrop.id = "backdrop";
+  spinner.classList.add("spinner");
+  backdrop.classList.add("backdrop");
+  document.querySelector("body").style.overflow = "hidden";
 }
-function removeLoader() {
-  document.querySelector("#loader").remove();
+function removeSpinner() {
+  document.querySelector("#backdrop").remove();
+  document.querySelector("body").style.removeProperty("overflow");
 }
 
 async function getCAdata() {
   queryString = `?date=${document.querySelector("#dateInput").value}`;
   const cadata = document.querySelector("#cadata");
-  addLoader();
+  addSpinner();
   const resp = await fetch("/getcadata/" + queryString, {
     method: "POST",
     headers: {
@@ -35,7 +34,7 @@ async function getCAdata() {
   });
   const data = await resp.text();
   cadata.innerHTML = data;
-  removeLoader();
+  removeSpinner();
   document
     .querySelectorAll("[data-object]")
     .forEach(e => e.addEventListener("click", openDetails));
@@ -61,7 +60,7 @@ async function openDetails(event) {
     objectDetails.style.display =
       objectDetails.style.display === "none" ? "table-row" : "none";
   } else {
-    addLoader();
+    addSpinner();
     const resp = await fetch("/getobjectdata", {
       method: "POST",
       body: JSON.stringify({
@@ -72,7 +71,7 @@ async function openDetails(event) {
       },
     });
     const data = await resp.text();
-    removeLoader();
+    removeSpinner();
     selectedRow.insertAdjacentHTML("afterend", data);
   }
 }

@@ -518,4 +518,26 @@ summary {
 
 .table tr[data-object]:hover {
   cursor: pointer;
+}
+
+.spinner {
+  position: fixed;
+  width: 5rem;
+  height: 5rem;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-image: url("../images/spinner.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 }/*# sourceMappingURL=main.css.map */
