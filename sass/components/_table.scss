@@ -24,3 +24,7 @@
     color: inherit;
   }
 }
+
+.table__row-active > td {
+  background: grey;
+}

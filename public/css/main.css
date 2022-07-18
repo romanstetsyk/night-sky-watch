@@ -504,4 +504,8 @@ p {
   display: block;
   padding: 0.2rem;
   color: inherit;
+}
+
+.table__row-active > td {
+  background: grey;
 }/*# sourceMappingURL=main.css.map */

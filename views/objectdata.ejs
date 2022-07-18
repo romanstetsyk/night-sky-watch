@@ -1,54 +1,56 @@
-<ul class="basic-data">
-    <li>
-        <h2>Name: <%= data.object.fullname %>
-        </h2>
-    </li>
-    <li>Potentially Hazardous Asteroid: <%= data.object.pha ? 'Yes' : 'No' %>
-    </li>
-    <li>SPKID: <%= data.object.spkid %>
-    </li>
-    <li>Kind: <%= {'au': 'Unnumbered Asteroid' , 'an' : 'Numbered Asteroid' , 'cn' : 'Numbered Comet' , 'cu'
-            : 'Unnumbered Comet' }[data.object.kind] %>
-    </li>
-    <% if (neows.status !=404) { %>
-        <li>First observation: <%= neows.orbital_data.first_observation_date %>
-        </li>
-        <li>Orbit determination: <%= neows.orbital_data.orbit_determination_date %>
-        </li>
-        <li>Estimated diameter: <%= Math.trunc(neows.estimated_diameter.meters.estimated_diameter_min) %> - <%=
-                    Math.trunc(neows.estimated_diameter.meters.estimated_diameter_max) %> m</li>
-        <% } %>
-</ul>
+<tr data-object-details="<%= data.object.des.replace(/ /, '-') %>">
+    <td colspan="5">
+        <ul class="basic-data">
+            <li>
+                <h2>Name: <%= data.object.fullname %>
+                </h2>
+            </li>
+            <li>Potentially Hazardous Asteroid: <%= data.object.pha ? 'Yes' : 'No' %>
+            </li>
+            <li>SPKID: <%= data.object.spkid %>
+            </li>
+            <li>Kind: <%= {'au': 'Unnumbered Asteroid' , 'an' : 'Numbered Asteroid' , 'cn' : 'Numbered Comet' , 'cu'
+                    : 'Unnumbered Comet' }[data.object.kind] %>
+            </li>
+            <% if (neows.status !=404) { %>
+                <li>First observation: <%= neows.orbital_data.first_observation_date %>
+                </li>
+                <li>Orbit determination: <%= neows.orbital_data.orbit_determination_date %>
+                </li>
+                <li>Estimated diameter: <%= Math.trunc(neows.estimated_diameter.meters.estimated_diameter_min) %> - <%=
+                            Math.trunc(neows.estimated_diameter.meters.estimated_diameter_max) %> m</li>
+                <% } %>
+        </ul>
 
-<% if (neows.status !==404) { %>
-    <div class="table-ca">
-        <details>
-            <summary>ca data for this object</summary>
-            <table>
-                <tr>
-                    <thead>
-                        <th>Close Approach <br>Date</th>
-                        <th>Relative <br> Velocity (km/s)</th>
-                        <th>Miss Distance <br> (km)</th>
-                        <!-- <th>Orbiting Body</th> -->
-                    </thead>
-                </tr>
-                <% for (let obj of neows.close_approach_data) { %>
+        <% if (neows.status !==404) { %>
+            <details>
+                <summary>ca data for this object</summary>
+                <table>
                     <tr>
-                        <td>
-                            <%= obj.close_approach_date %>
-                        </td>
-                        <td>
-                            <%= parseFloat(obj.relative_velocity.kilometers_per_second).toFixed(2) %>
-                        </td>
-                        <td>
-                            <%= Math.round(obj.miss_distance.astronomical * 149597870.7).toLocaleString(undefined, {
-                                minimumFractionDigits: 0 }) %>
-                        </td>
-                        <!-- <td><%= obj.orbiting_body %></td> -->
+                        <thead>
+                            <th>Close Approach <br>Date</th>
+                            <th>Relative <br> Velocity (km/s)</th>
+                            <th>Miss Distance <br> (km)</th>
+                            <!-- <th>Orbiting Body</th> -->
+                        </thead>
                     </tr>
-                    <% } %>
-            </table>
-        </details>
-    </div>
-    <% } %>
+                    <% for (let obj of neows.close_approach_data) { %>
+                        <tr>
+                            <td>
+                                <%= obj.close_approach_date %>
+                            </td>
+                            <td>
+                                <%= parseFloat(obj.relative_velocity.kilometers_per_second).toFixed(2) %>
+                            </td>
+                            <td>
+                                <%= Math.round(obj.miss_distance.astronomical * 149597870.7).toLocaleString(undefined, {
+                                    minimumFractionDigits: 0 }) %>
+                            </td>
+                            <!-- <td><%= obj.orbiting_body %></td> -->
+                        </tr>
+                        <% } %>
+                </table>
+            </details>
+            <% } %>
+    </td>
+</tr>
