@@ -495,9 +495,6 @@ summary {
   margin-right: 1rem;
   border-collapse: collapse;
 }
-.table tr:hover {
-  cursor: pointer;
-}
 .table th, .table td {
   padding: 0.25rem 0.5rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -519,6 +516,6 @@ summary {
   background: grey;
 }
 
-.object-details:hover {
-  cursor: default;
+.table tr[data-object]:hover {
+  cursor: pointer;
 }/*# sourceMappingURL=main.css.map */

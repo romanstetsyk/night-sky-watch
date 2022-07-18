@@ -2,9 +2,6 @@
   display: inline-table; // fixes dissapearing right padding
   margin-right: 1rem;
   border-collapse: collapse;
-  & tr:hover {
-    cursor: pointer;
-  }
 
   & th,
   & td {
@@ -30,4 +27,8 @@
 
 .table__row-active > td {
   background: grey;
+}
+
+.table tr[data-object]:hover {
+  cursor: pointer;
 }
