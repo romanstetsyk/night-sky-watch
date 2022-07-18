@@ -18,6 +18,10 @@
     font-size: 0.75em;
   }
 
+  .table__links {
+    display: flex;
+    flex-wrap: wrap;
+  }
   &__link {
     display: block;
     padding: 0.2rem;

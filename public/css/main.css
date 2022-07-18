@@ -464,6 +464,10 @@ summary {
 .table__deviation {
   font-size: 0.75em;
 }
+.table .table__links {
+  display: flex;
+  flex-wrap: wrap;
+}
 .table__link {
   display: block;
   padding: 0.2rem;

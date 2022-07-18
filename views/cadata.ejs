@@ -12,7 +12,7 @@
                         <th>Close Approach (CA) Date</th>
                         <th>CA Distance<br>(km)</th>
                         <th>Velocity<br>(km/s)</th>
-                        <th>Animations (new tab)</th>
+                        <th>Animations<br>(new tab)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,7 +33,7 @@
                             <td>
                                 <%= parseFloat(data.data[i][7]).toFixed(2) %>
                             </td>
-                            <td>
+                            <td class="table__links">
                                 <a class="table__link" target="_blank"
                                     href="https://cneos.jpl.nasa.gov/ca/ov/#load=&desig=<%= data.data[i][0].replace(/ /, '%20') %>&cajd=<%= data.data[i][2] %>">Link1</a>
                                 <a class="table__link" target="_blank"
