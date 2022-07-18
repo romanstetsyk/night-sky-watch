@@ -1,4 +1,4 @@
-<tr data-object-details="<%= data.object.des.replace(/ /, '-') %>">
+<tr class="object-details" data-object-details="<%= data.object.des.replace(/ /, '-') %>">
     <td colspan="5">
         <ul class="basic-data">
             <li>
@@ -23,9 +23,9 @@
         </ul>
 
         <% if (neows.status !==404) { %>
-            <details>
-                <summary>ca data for this object</summary>
-                <table>
+            <details class="other-ca-data">
+                <summary>Other CA data for this object</summary>
+                <table class="table">
                     <tr>
                         <thead>
                             <th>Close Approach <br>Date</th>

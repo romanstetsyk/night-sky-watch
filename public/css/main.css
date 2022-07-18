@@ -248,6 +248,7 @@ body {
 }
 
 ul {
+  padding: 0;
   list-style: none;
 }
 
@@ -259,6 +260,10 @@ h5,
 h6,
 p {
   margin: 0;
+}
+
+summary {
+  cursor: pointer;
 }
 
 .container {
@@ -400,9 +405,6 @@ p {
 .introduction__container::after {
   bottom: 0;
 }
-.introduction__toggle {
-  cursor: pointer;
-}
 .introduction__paragraph {
   padding-top: 0.5rem;
 }
@@ -431,6 +433,10 @@ p {
 
 .ca-data__table-wrapper {
   overflow-x: auto;
+}
+
+.other-ca-data {
+  margin-bottom: 1rem;
 }
 
 .wrapper {
@@ -489,6 +495,9 @@ p {
   margin-right: 1rem;
   border-collapse: collapse;
 }
+.table tr:hover {
+  cursor: pointer;
+}
 .table th, .table td {
   padding: 0.25rem 0.5rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -508,4 +517,8 @@ p {
 
 .table__row-active > td {
   background: grey;
+}
+
+.object-details:hover {
+  cursor: default;
 }/*# sourceMappingURL=main.css.map */

@@ -2,6 +2,9 @@
   display: inline-table; // fixes dissapearing right padding
   margin-right: 1rem;
   border-collapse: collapse;
+  & tr:hover {
+    cursor: pointer;
+  }
 
   & th,
   & td {

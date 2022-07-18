@@ -8,6 +8,7 @@ body {
 }
 
 ul {
+  padding: 0;
   list-style: none;
 }
 
@@ -19,4 +20,8 @@ h5,
 h6,
 p {
   margin: 0;
+}
+
+summary {
+  cursor: pointer;
 }
