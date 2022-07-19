@@ -528,6 +528,10 @@ a {
   cursor: pointer;
 }
 
+.basic-data > li {
+  margin-top: 0.25rem;
+}
+
 .spinner {
   position: fixed;
   width: 5rem;

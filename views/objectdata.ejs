@@ -43,7 +43,7 @@
                             <th>Close Approach <br>Date</th>
                             <th>Relative <br> Velocity (km/s)</th>
                             <th>Miss Distance <br> (km)</th>
-                            <!-- <th>Orbiting Body</th> -->
+                            <th>Body</th>
                         </thead>
                     </tr>
                     <% for (let obj of neowsData.close_approach_data) { %>
@@ -58,7 +58,9 @@
                                 <%= Math.round(obj.miss_distance.astronomical * 149597870.7).toLocaleString(undefined, {
                                     minimumFractionDigits: 0 }) %>
                             </td>
-                            <!-- <td><%= obj.orbiting_body %></td> -->
+                            <td>
+                                <%= obj.orbiting_body %>
+                            </td>
                         </tr>
                         <% } %>
                 </table>
