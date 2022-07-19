@@ -389,6 +389,8 @@ a {
 
 .date-picker {
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 .date-picker .button {
