@@ -1,28 +1,40 @@
-<tr class="object-details" data-object-details="<%= data.object.des.replace(/ /, '-') %>">
+<tr class="object-details" data-object-details="<%= objectData.object.des.replace(/ /, '-') %>">
     <td colspan="6">
         <ul class="basic-data">
             <li>
-                <h2>Name: <%= data.object.fullname %>
+                <h2>Name: <%= objectData.object.fullname %>
                 </h2>
             </li>
-            <li>Potentially Hazardous Asteroid: <%= data.object.pha ? 'Yes' : 'No' %>
+            <li>Potentially Hazardous Asteroid: <%= objectData.object.pha ? 'Yes' : 'No' %>
             </li>
-            <li>SPKID: <%= data.object.spkid %>
+            <li>SPKID: <%= objectData.object.spkid %>
             </li>
             <li>Kind: <%= {'au': 'Unnumbered Asteroid' , 'an' : 'Numbered Asteroid' , 'cn' : 'Numbered Comet' , 'cu'
-                    : 'Unnumbered Comet' }[data.object.kind] %>
+                    : 'Unnumbered Comet' }[objectData.object.kind] %>
             </li>
-            <% if (neows.status !=404) { %>
-                <li>First observation: <%= neows.orbital_data.first_observation_date %>
+            <li>Orbit class: <%= objectData.object.orbit_class.name %>
+            </li>
+
+            <% if (objectData?.discovery?.discovery) { %>
+                <li>
+                    <%= objectData?.discovery?.discovery %>
                 </li>
-                <li>Orbit determination: <%= neows.orbital_data.orbit_determination_date %>
-                </li>
-                <li>Estimated diameter: <%= Math.trunc(neows.estimated_diameter.meters.estimated_diameter_min) %> - <%=
-                            Math.trunc(neows.estimated_diameter.meters.estimated_diameter_max) %> m</li>
-                <% } %>
+                <% } else if (neowsData.status !=404) { %>
+                    <li>First observation: <%= neowsData.orbital_data.first_observation_date %>
+                    </li>
+                    <% } %>
+
+                        <% if (neowsData.status !=404) { %>
+
+                            <li>Orbit determination: <%= neowsData.orbital_data.orbit_determination_date %>
+                            </li>
+                            <li>Estimated diameter: <%=
+                                    Math.trunc(neowsData.estimated_diameter.meters.estimated_diameter_min) %> -
+                                    <%= Math.trunc(neowsData.estimated_diameter.meters.estimated_diameter_max) %> m</li>
+                            <% } %>
         </ul>
 
-        <% if (neows.status !==404) { %>
+        <% if (neowsData.status !==404) { %>
             <details class="other-ca-data">
                 <summary>Other CA data for this object</summary>
                 <table class="table">
@@ -34,7 +46,7 @@
                             <!-- <th>Orbiting Body</th> -->
                         </thead>
                     </tr>
-                    <% for (let obj of neows.close_approach_data) { %>
+                    <% for (let obj of neowsData.close_approach_data) { %>
                         <tr>
                             <td>
                                 <%= obj.close_approach_date %>
