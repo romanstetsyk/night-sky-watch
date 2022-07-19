@@ -8,13 +8,13 @@
       rgba(0, 0, 0, 0.2),
       rgba(0, 0, 0, 0.7)
     ),
-    url("../images/tables-bg-med.jpeg");
+    url("../images/tables-bg-sm.jpeg");
   background-image: linear-gradient(
       to right,
       rgba(0, 0, 0, 0.2),
       rgba(0, 0, 0, 0.7)
     ),
-    url("../images/tables-bg-med.webp");
+    url("../images/tables-bg-sm.webp");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -39,5 +39,44 @@
 @media screen and (min-width: v.$bp-lg) {
   .wrapper {
     padding: 0 7rem;
+  }
+}
+
+@media screen and (min-device-pixel-ratio: 2),
+  screen and (min-resolution: 192dpi),
+  screen and (min-resolution: 2dppx),
+  screen and (min-width: v.$bp-med-1) {
+  .wrapper {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.7)
+      ),
+      url("../images/tables-bg-med.jpeg");
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.7)
+      ),
+      url("../images/tables-bg-med.webp");
+  }
+}
+
+@media screen and (min-device-pixel-ratio: 2) and (min-width: v.$bp-lg),
+  screen and (min-resolution: 192dpi) and (min-width: v.$bp-lg),
+  screen and (min-resolution: 2dppx) and (min-width: v.$bp-lg) {
+  .wrapper {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.7)
+      ),
+      url("../images/tables-bg-lg.jpeg");
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.7)
+      ),
+      url("../images/tables-bg-lg.webp");
   }
 }

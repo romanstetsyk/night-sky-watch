@@ -427,8 +427,8 @@ a {
 .wrapper {
   min-height: 100vh;
   background-color: #000;
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7)), url("../images/tables-bg-med.jpeg");
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7)), url("../images/tables-bg-med.webp");
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7)), url("../images/tables-bg-sm.jpeg");
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7)), url("../images/tables-bg-sm.webp");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -450,6 +450,18 @@ a {
 @media screen and (min-width: 73em) {
   .wrapper {
     padding: 0 7rem;
+  }
+}
+@media screen and (min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi), screen and (min-resolution: 2dppx), screen and (min-width: 40em) {
+  .wrapper {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7)), url("../images/tables-bg-med.jpeg");
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7)), url("../images/tables-bg-med.webp");
+  }
+}
+@media screen and (min-device-pixel-ratio: 2) and (min-width: 73em), screen and (min-resolution: 192dpi) and (min-width: 73em), screen and (min-resolution: 2dppx) and (min-width: 73em) {
+  .wrapper {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7)), url("../images/tables-bg-lg.jpeg");
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7)), url("../images/tables-bg-lg.webp");
   }
 }
 .button {
