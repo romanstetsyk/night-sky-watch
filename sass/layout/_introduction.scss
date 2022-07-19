@@ -20,6 +20,11 @@
     text-transform: uppercase;
   }
 
+  &__link {
+    color: inherit;
+    text-decoration: none;
+  }
+
   &__container {
     padding: 0.5rem 0;
     margin: 0.5rem 0;
@@ -43,6 +48,7 @@
 
 .date-picker {
   display: flex;
+  gap: 1rem;
 
   & .button {
     font-size: 1rem;

@@ -368,6 +368,10 @@ a {
   font-size: 1.25rem;
   text-transform: uppercase;
 }
+.introduction__link {
+  color: inherit;
+  text-decoration: none;
+}
 .introduction__container {
   padding: 0.5rem 0;
   margin: 0.5rem 0;
@@ -385,6 +389,7 @@ a {
 
 .date-picker {
   display: flex;
+  gap: 1rem;
 }
 .date-picker .button {
   font-size: 1rem;
