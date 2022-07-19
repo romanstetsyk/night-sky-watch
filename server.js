@@ -57,14 +57,6 @@ app.get("/table/", async (request, response) => {
   response.render("index.ejs");
 });
 
-app.post("/animation", async (request, response) => {
-  let name = request.body.name.replace(/-/, " ");
-  let row = globalData.data.find(row => row[11].includes(name));
-  return response.json({
-    url: `https://cneos.jpl.nasa.gov/ca/ov/#load=&desig=${row[0]}&cajd=${row[2]}&`,
-  });
-});
-
 app.post("/getcadata/", async (request, response) => {
   let dateMin = request.query.date ? request.query.date : addDays(0);
   let dateMax = addDays(60, dateMin);
