@@ -13,6 +13,7 @@
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5));
   border: 1px solid v.$white-white;
   transition: 0.4s;
+  transition: all 250ms linear;
 }
 
 .button:hover {

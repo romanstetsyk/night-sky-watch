@@ -462,6 +462,7 @@ a {
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5));
   border: 1px solid #fff;
   transition: 0.4s;
+  transition: all 250ms linear;
 }
 
 .button:hover {
@@ -490,7 +491,7 @@ a {
 .table__deviation {
   font-size: 0.75em;
 }
-.table .table__links {
+.table__links {
   display: flex;
   flex-wrap: wrap;
 }
@@ -499,12 +500,16 @@ a {
   padding: 0.2rem;
   color: inherit;
 }
-
 .table__row-active > td {
   background: grey;
 }
 
+.table tr[data-object] {
+  transition: background-color 250ms linear;
+}
+
 .table tr[data-object]:hover {
+  background-color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
 }
 

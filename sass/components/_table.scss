@@ -18,21 +18,27 @@
     font-size: 0.75em;
   }
 
-  .table__links {
+  &__links {
     display: flex;
     flex-wrap: wrap;
   }
+
   &__link {
     display: block;
     padding: 0.2rem;
     color: inherit;
   }
+
+  &__row-active > td {
+    background: grey;
+  }
 }
 
-.table__row-active > td {
-  background: grey;
+.table tr[data-object] {
+  transition: background-color 250ms linear;
 }
 
 .table tr[data-object]:hover {
+  background-color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
 }

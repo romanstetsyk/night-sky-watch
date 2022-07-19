@@ -37,11 +37,13 @@
                             <td>
                                 <%= parseFloat(data.data[i][7]).toFixed(2) %>
                             </td>
-                            <td class="table__links">
-                                <a class="table__link" target="_blank"
-                                    href="https://cneos.jpl.nasa.gov/ca/ov/#load=&desig=<%= data.data[i][0].replace(/ /, '%20') %>&cajd=<%= data.data[i][2] %>">Link1</a>
-                                <a class="table__link" target="_blank"
-                                    href="https://ssd.jpl.nasa.gov/ov/#load=<%= data.data[i][0].replace(/ /, '%20') %>&time=<%= (data.data[i][2] - 2440587.5)*86400000 %>&lookat=SSB&interval=11&eclipticgrid=false&">Link2</a>
+                            <td>
+                                <div class="table__links">
+                                    <a class="table__link" target="_blank"
+                                        href="https://cneos.jpl.nasa.gov/ca/ov/#load=&desig=<%= data.data[i][0].replace(/ /, '%20') %>&cajd=<%= data.data[i][2] %>">Link1</a>
+                                    <a class="table__link" target="_blank"
+                                        href="https://ssd.jpl.nasa.gov/ov/#load=<%= data.data[i][0].replace(/ /, '%20') %>&time=<%= (data.data[i][2] - 2440587.5)*86400000 %>&lookat=SSB&interval=11&eclipticgrid=false&">Link2</a>
+                                </div>
                             </td>
                         </tr>
                         <% } %>
