@@ -59,9 +59,7 @@ app.get("/table/", async (request, response) => {
 
 app.post("/animation", async (request, response) => {
   let name = request.body.name.replace(/-/, " ");
-  console.log(name);
   let row = globalData.data.find(row => row[11].includes(name));
-  console.log(row);
   return response.json({
     url: `https://cneos.jpl.nasa.gov/ca/ov/#load=&desig=${row[0]}&cajd=${row[2]}&`,
   });

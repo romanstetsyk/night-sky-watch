@@ -51,14 +51,16 @@ async function openDetails(event) {
   const objectDetails = document.querySelector(
     `[data-object-details="${objName}"]`
   );
-  console.log(objectDetails);
 
   const selectedRow = event.currentTarget;
+
   selectedRow.classList.toggle("table__row-active");
 
   if (objectDetails) {
-    objectDetails.style.display =
-      objectDetails.style.display === "none" ? "table-row" : "none";
+    if (event.target.tagName !== "A") {
+      objectDetails.style.display =
+        objectDetails.style.display === "none" ? "table-row" : "none";
+    }
   } else {
     addSpinner();
     const resp = await fetch("/getobjectdata", {
