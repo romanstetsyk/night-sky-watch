@@ -441,6 +441,11 @@ a {
 
 @media screen and (min-width: 60em) {
   .wrapper {
+    padding: 0 3rem;
+  }
+}
+@media screen and (min-width: 73em) {
+  .wrapper {
     padding: 0 7rem;
   }
 }

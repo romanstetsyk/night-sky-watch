@@ -24,6 +24,12 @@
 
 @media screen and (min-width: v.$bp-med-3) {
   .wrapper {
+    padding: 0 3rem;
+  }
+}
+
+@media screen and (min-width: v.$bp-lg) {
+  .wrapper {
     padding: 0 7rem;
   }
 }
