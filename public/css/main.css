@@ -263,17 +263,16 @@ summary {
   cursor: pointer;
 }
 
+a {
+  line-height: 1;
+}
+
 .container {
   max-width: 90em;
   padding-left: 1rem;
   padding-right: 1rem;
 }
 
-@media screen and (min-width: 40em) {
-  .container {
-    width: 75%;
-  }
-}
 .landing .container {
   display: flex;
   flex-direction: column;
@@ -391,9 +390,17 @@ summary {
   font-size: 1rem;
 }
 
+@media screen and (min-width: 60em) {
+  .introduction__heading {
+    font-size: 2rem;
+  }
+}
+.ca-data {
+  align-self: center;
+  max-width: 100%;
+}
+
 .ca-data .container {
-  display: flex;
-  flex-wrap: wrap;
   padding-right: 0;
 }
 
@@ -418,11 +425,17 @@ summary {
   flex-direction: column;
 }
 .wrapper__copyright {
+  align-self: center;
   margin-top: auto;
   padding-bottom: 1rem;
   padding-top: 3rem;
 }
 
+@media screen and (min-width: 60em) {
+  .wrapper {
+    padding: 0 7rem;
+  }
+}
 .button {
   display: block;
   max-width: fit-content;
@@ -455,7 +468,7 @@ summary {
 }
 .table th, .table td {
   padding: 0.25rem 0.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   background-color: rgba(33, 33, 33, 0.8);
 }
 .table__cell-nowrap {
@@ -501,4 +514,15 @@ summary {
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.copyright {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.copyright__link {
+  display: flex;
+  align-items: center;
 }/*# sourceMappingURL=main.css.map */

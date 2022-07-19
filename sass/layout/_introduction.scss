@@ -48,3 +48,9 @@
     font-size: 1rem;
   }
 }
+
+@media screen and (min-width: v.$bp-med-3) {
+  .introduction__heading {
+    font-size: 2rem;
+  }
+}

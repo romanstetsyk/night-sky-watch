@@ -1,3 +1,5 @@
+@use "../utils/variables" as v;
+
 .wrapper {
   min-height: 100vh;
   background-color: #000;
@@ -13,8 +15,15 @@
   flex-direction: column;
 
   &__copyright {
+    align-self: center;
     margin-top: auto;
     padding-bottom: 1rem;
     padding-top: 3rem;
+  }
+}
+
+@media screen and (min-width: v.$bp-med-3) {
+  .wrapper {
+    padding: 0 7rem;
   }
 }
