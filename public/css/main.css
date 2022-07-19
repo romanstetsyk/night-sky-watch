@@ -562,4 +562,13 @@ a {
 .copyright__link {
   display: flex;
   align-items: center;
+}
+
+.copyright__icon {
+  fill: #fff;
+  transition: fill 250ms linear;
+}
+
+.copyright__icon:hover {
+  fill: rgb(170, 170, 170);
 }/*# sourceMappingURL=main.css.map */
