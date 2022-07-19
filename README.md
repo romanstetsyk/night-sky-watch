@@ -2,9 +2,7 @@
 
 Application that monitors asteroid and comet close approaches to Earth.
 
-Live version: https://asteroids-approaches.herokuapp.com/
-
-![Screenshot](https://i.imgur.com/ctfdib8.png)
+![Screenshot](https://i.imgur.com/mhAmWme.png)
 
 ## Technologies
 
