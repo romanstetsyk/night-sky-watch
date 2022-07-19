@@ -8,8 +8,16 @@
       rgba(0, 0, 0, 0.2),
       rgba(0, 0, 0, 0.7)
     ),
-    url("../images/stars.jpeg");
+    url("../images/tables-bg-med.jpeg");
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.7)
+    ),
+    url("../images/tables-bg-med.webp");
   background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 
   display: flex;
   flex-direction: column;
