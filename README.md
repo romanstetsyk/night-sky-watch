@@ -1,4 +1,4 @@
-# Near Earth Objects
+# Night Sky Watch
 
 Application that monitors asteroid and comet close approaches to Earth.
 
