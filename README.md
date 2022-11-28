@@ -17,7 +17,7 @@ Application that monitors asteroid and comet close approaches to Earth.
 Step 1: Download/clone.
 
 ```
-git clone https://github.com/romanstetsyk/asteroid-approaches.git
+git clone https://github.com/romanstetsyk/night-sky-watch.git
 ```
 
 Step 2: Install dependencies.
