@@ -15,7 +15,7 @@
                         <th>Animations<br>(new tab)</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="table__body">
                     <% for (let i=0; i < data.data.length; i +=1) { %>
                         <tr data-object="<%= data.data[i][0].replace(/ /, '-') %>">
                             <td class="table__cell-nowrap">
@@ -26,7 +26,7 @@
                                 </span> <span class="table__cell-nowrap table__deviation"> &#177;<%= data.data[i][9] %>
                                 </span>
                             </td>
-                            <td>
+                            <td data-distance="<%= data.data[i][4] %>">
                                 <%= (data.data[i][4] * 149597870.7).toLocaleString(undefined, { maximumFractionDigits: 0
                                     }) %>&nbsp;km
                             </td>

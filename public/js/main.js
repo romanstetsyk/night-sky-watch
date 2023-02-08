@@ -8,9 +8,58 @@ window.addEventListener(
     document.querySelector("#searchDate").addEventListener("click", getCAdata);
     // Load data for today on page load
     await getCAdata();
+    // Add event listener for table head
+    document.querySelector(".table__head").addEventListener("click", sortTable);
   },
   { once: true }
 );
+
+function sortTable(e) {
+  const colNum = e.target.cellIndex;
+  const tbody = document.querySelector(".table__body");
+
+  let rowsArray = []; // regular rows
+  let rowsDetailsArray = []; // rows with details
+  Array.from(tbody.rows).forEach((row) =>
+    row.dataset.objectDetails ? rowsDetailsArray.push(row) : rowsArray.push(row)
+  );
+
+  sortFunc = (colNum) => {
+    switch (colNum) {
+      // Sort by date
+      case 1:
+        return (a, b) => {
+          const t1 = new Date(a.cells[colNum].firstChild.textContent.trim());
+          const t2 = new Date(b.cells[colNum].firstChild.textContent.trim());
+          return t1 - t2;
+        };
+      // Sort by distance
+      case 2:
+        return (a, b) =>
+          +a.cells[colNum].dataset.distance - +b.cells[colNum].dataset.distance;
+      // Sort by velocity
+      case 3:
+        return (a, b) =>
+          +a.cells[colNum + 1].textContent.trim() -
+          +b.cells[colNum + 1].textContent.trim();
+    }
+  };
+
+  rowsArray.sort(sortFunc(colNum));
+
+  const nodes = [];
+  rowsArray.forEach((row) => {
+    nodes.push(row);
+    const details = rowsDetailsArray.find((e) => {
+      return e.dataset.objectDetails === row.dataset.object;
+    });
+    if (details) {
+      nodes.push(details);
+    }
+  });
+  // Appending existing rows removes them from old places
+  tbody.append(...nodes);
+}
 
 function addSpinner() {
   const backdrop = document.createElement("div");
