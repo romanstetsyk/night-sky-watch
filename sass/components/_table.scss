@@ -46,3 +46,12 @@
 .basic-data > li {
   margin-top: 0.25rem;
 }
+
+.table__row > th {
+  transition: background-color 250ms linear;
+}
+
+.table__row > th:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.5);
+}
