@@ -28,11 +28,8 @@ function sortTable(e) {
     switch (colNum) {
       // Sort by date
       case 1:
-        return (a, b) => {
-          const t1 = new Date(a.cells[colNum].firstChild.textContent.trim());
-          const t2 = new Date(b.cells[colNum].firstChild.textContent.trim());
-          return t1 - t2;
-        };
+        return (a, b) =>
+          +a.cells[colNum].dataset.jd - +b.cells[colNum].dataset.jd;
       // Sort by distance
       case 2:
         return (a, b) =>
