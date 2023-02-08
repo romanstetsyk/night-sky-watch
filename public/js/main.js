@@ -105,14 +105,14 @@ async function openDetails(event) {
 
   const selectedRow = event.currentTarget;
 
-  selectedRow.classList.toggle("table__row-active");
-
   if (objectDetails) {
     if (event.target.tagName !== "A") {
+      selectedRow.classList.toggle("table__row-active");
       objectDetails.style.display =
         objectDetails.style.display === "none" ? "table-row" : "none";
     }
   } else {
+    selectedRow.classList.toggle("table__row-active");
     addSpinner();
     const resp = await fetch("/getobjectdata", {
       method: "POST",
