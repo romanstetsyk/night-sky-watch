@@ -8,8 +8,6 @@ window.addEventListener(
     document.querySelector("#searchDate").addEventListener("click", getCAdata);
     // Load data for today on page load
     await getCAdata();
-    // Add event listener for table head
-    document.querySelector(".table__head").addEventListener("click", sortTable);
   },
   { once: true }
 );
@@ -91,6 +89,8 @@ async function getCAdata() {
   document
     .querySelectorAll("[data-object]")
     .forEach((e) => e.addEventListener("click", openDetails));
+  // Add event listener for table head
+  document.querySelector(".table__head").addEventListener("click", sortTable);
 }
 
 async function openDetails(event) {
