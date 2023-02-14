@@ -1,3 +1,5 @@
+"use strict";
+
 window.addEventListener(
   "load",
   async () => {
@@ -16,8 +18,8 @@ function sortTable(e) {
   const colNum = e.target.cellIndex;
   const tbody = document.querySelector(".table__body");
 
-  let rowsArray = []; // regular rows
-  let rowsDetailsArray = []; // rows with details
+  const rowsArray = []; // regular rows
+  const rowsDetailsArray = []; // rows with details
   Array.from(tbody.rows).forEach((row) =>
     row.dataset.objectDetails ? rowsDetailsArray.push(row) : rowsArray.push(row)
   );
@@ -74,7 +76,7 @@ function removeSpinner() {
 }
 
 async function getCAdata() {
-  queryString = `?date=${document.querySelector("#dateInput").value}`;
+  const queryString = `?date=${document.querySelector("#dateInput").value}`;
   const cadata = document.querySelector("#cadata");
   addSpinner();
   const resp = await fetch("/getcadata/" + queryString, {
@@ -105,7 +107,7 @@ async function getCAdata() {
 }
 
 async function openDetails(event) {
-  let objName = event.currentTarget.getAttribute("data-object");
+  const objName = event.currentTarget.getAttribute("data-object");
 
   const objectDetails = document.querySelector(
     `[data-object-details="${objName}"]`

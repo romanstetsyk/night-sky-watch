@@ -1,3 +1,5 @@
+"use strict";
+
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
@@ -12,16 +14,16 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-function addDays(deltaDays, dateMin) {
-  /**
-   * delta Days: number of days. Integer
-   * dateMin: starting date in the form 'yyyy-mm-dd'. If omitted, current date is used.
-   * function adds deltaDays to the dateMin
-   * returns a string in the form 'yyyy-mm-dd'
-   */
-  let dateMax = dateMin ? new Date(dateMin) : new Date();
-  dateMax.setDate(dateMax.getDate() + deltaDays);
-  return dateMax.toISOString().split("T")[0];
+/**
+ * add 'delta' days to the date
+ * @param {number} delta number of days to add
+ * @param {string|Date} start starting date
+ * @returns {string} date in a 'yyyy-mm-dd' format
+ */
+function addDays(delta, start = new Date()) {
+  const end = new Date(start);
+  end.setDate(end.getDate() + delta);
+  return end.toISOString().split("T")[0];
 }
 
 async function getCloseApproachData(dateMin, dateMax) {
@@ -47,7 +49,6 @@ async function getObjectData(name) {
     const { status, statusText } = res;
     const error = new Error(statusText);
     error.status = status;
-    error.origin = "getObjectData";
     throw error;
   }
   const data = await res.json();
@@ -63,34 +64,37 @@ async function getNeowsData(spkid) {
     const { status, statusText } = res;
     const error = new Error(statusText);
     error.status = status;
-    error.origin = "getNeowsData";
     throw error;
   }
   const data = await res.json();
   return data;
 }
 
-app.get("/", (request, response) => {
-  response.render("landing.ejs");
+app.get("/", (_, res) => {
+  res.render("landing.ejs");
 });
 
-app.get("/table/", async (request, response) => {
-  response.render("index.ejs");
+app.get("/table/", async (_, res) => {
+  res.render("index.ejs");
 });
 
-app.post("/getcadata/", async (request, response, next) => {
+app.post("/getcadata/", async (req, res, next) => {
+  const { date } = req.query;
+  const dateMin = date || addDays(0);
+  const dateMax = addDays(60, dateMin);
+
+  let data;
   try {
-    const dateMin = request.query.date ? request.query.date : addDays(0);
-    const dateMax = addDays(60, dateMin);
-    const data = await getCloseApproachData(dateMin, dateMax);
-    return response.render("cadata.ejs", { data: data, date: dateMin });
+    data = await getCloseApproachData(dateMin, dateMax);
   } catch (err) {
-    next(err);
+    return next(err);
   }
+  return res.render("cadata.ejs", { data });
 });
 
-app.post("/getobjectdata", async (request, response, next) => {
-  let name = request.body.name.replace(/-/, "%20");
+app.post("/getobjectdata", async (req, res, next) => {
+  let { name } = req.body;
+  name = name.replace(/-/, "%20");
 
   let objectData;
   try {
@@ -109,10 +113,7 @@ app.post("/getobjectdata", async (request, response, next) => {
     neowsData = { status: 404 };
   }
 
-  return response.render("objectdata.ejs", {
-    objectData: objectData,
-    neowsData: neowsData,
-  });
+  return res.render("objectdata.ejs", { objectData, neowsData });
 });
 
 app.use((err, req, res, next) => {
