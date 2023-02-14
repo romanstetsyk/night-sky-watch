@@ -26,7 +26,7 @@ function addDays(deltaDays, dateMin) {
 
 async function getCloseApproachData(dateMin, dateMax) {
   const apiResponse = await fetch(
-    `https://ssd-api.jpl.nasa.gov/cad.api?date-min=${dateMin}&date-max=${dateMax}&body=Earth&fullname=true&dist-max=0.05qwerq`
+    `https://ssd-api.jpl.nasa.gov/cad.api?date-min=${dateMin}&date-max=${dateMax}&body=Earth&fullname=true&dist-max=0.05`
   );
 
   if (!apiResponse.ok) {
@@ -55,8 +55,9 @@ async function getObjectData(name) {
 }
 
 async function getNeowsData(spkid) {
+  const { NASA_API } = process.env;
   const apiResponse = await fetch(
-    `https://api.nasa.gov/neo/rest/v1/neo/${spkid}?api_key=${process.env.NASA_API}`
+    `https://api.nasa.gov/neo/rest/v1/neo/${spkid}?api_key=${NASA_API}`
   );
   if (!apiResponse.ok) {
     const { status, statusText } = apiResponse;
@@ -120,4 +121,5 @@ app.use((err, req, res, next) => {
   res.status(status).json({ message });
 });
 
-app.listen(process.env.PORT || 8000, () => console.log("running..."));
+const { PORT = 8000 } = process.env;
+app.listen(PORT, () => console.log(`running on ${PORT} ...`));
