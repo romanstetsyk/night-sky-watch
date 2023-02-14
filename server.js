@@ -28,6 +28,13 @@ async function getCloseApproachData(dateMin, dateMax) {
   const apiResponse = await fetch(
     `https://ssd-api.jpl.nasa.gov/cad.api?date-min=${dateMin}&date-max=${dateMax}&body=Earth&fullname=true&dist-max=0.05`
   );
+
+  if (!apiResponse.ok) {
+    const { status, statusText } = apiResponse;
+    const error = new Error(statusText);
+    error.status = status;
+    throw error;
+  }
   const data = await apiResponse.json();
   return data;
 }
@@ -57,11 +64,15 @@ app.get("/table/", async (request, response) => {
   response.render("index.ejs");
 });
 
-app.post("/getcadata/", async (request, response) => {
-  let dateMin = request.query.date ? request.query.date : addDays(0);
-  let dateMax = addDays(60, dateMin);
-  let data = await getCloseApproachData(dateMin, dateMax);
-  return response.render("cadata.ejs", { data: data, date: dateMin });
+app.post("/getcadata/", async (request, response, next) => {
+  try {
+    const dateMin = request.query.date ? request.query.date : addDays(0);
+    const dateMax = addDays(60, dateMin);
+    const data = await getCloseApproachData(dateMin, dateMax);
+    return response.render("cadata.ejs", { data: data, date: dateMin });
+  } catch (err) {
+    next(err);
+  }
 });
 
 app.post("/getobjectdata", async (request, response) => {
@@ -73,6 +84,12 @@ app.post("/getobjectdata", async (request, response) => {
     objectData: objectData,
     neowsData: neowsData,
   });
+});
+
+app.use((err, req, res, next) => {
+  const { status = 500, message = "Server error", stack } = err;
+  console.log(stack);
+  res.status(status).json({ message });
 });
 
 app.listen(process.env.PORT || 8000, () => console.log("running..."));
