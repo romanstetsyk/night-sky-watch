@@ -580,4 +580,19 @@ a {
 
 .copyright__icon:hover {
   fill: rgb(170, 170, 170);
+}
+
+.error {
+  text-align: center;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 60em) {
+  .error {
+    font-size: 1.5rem;
+  }
 }/*# sourceMappingURL=main.css.map */

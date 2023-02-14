@@ -1,0 +1,16 @@
+@use "../utils/variables" as v;
+
+.error {
+  text-align: center;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+@media screen and (min-width: v.$bp-med-3) {
+  .error {
+    font-size: 1.5rem;
+  }
+}
