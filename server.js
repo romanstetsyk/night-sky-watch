@@ -26,7 +26,7 @@ function addDays(deltaDays, dateMin) {
 
 async function getCloseApproachData(dateMin, dateMax) {
   const apiResponse = await fetch(
-    `https://ssd-api.jpl.nasa.gov/cad.api?date-min=${dateMin}&date-max=${dateMax}&body=Earth&fullname=true&dist-max=0.05`
+    `https://ssd-api.jpl.nasa.gov/cad.api?date-min=${dateMin}&date-max=${dateMax}&body=Earth&fullname=true&dist-max=0.05qwerq`
   );
 
   if (!apiResponse.ok) {
@@ -43,6 +43,13 @@ async function getObjectData(name) {
   const apiResponse = await fetch(
     `https://ssd-api.jpl.nasa.gov/sbdb.api?des=${name}&discovery=true`
   );
+  if (!apiResponse.ok) {
+    const { status, statusText } = apiResponse;
+    const error = new Error(statusText);
+    error.status = status;
+    error.origin = "getObjectData";
+    throw error;
+  }
   const data = await apiResponse.json();
   return data;
 }
@@ -51,7 +58,13 @@ async function getNeowsData(spkid) {
   const apiResponse = await fetch(
     `https://api.nasa.gov/neo/rest/v1/neo/${spkid}?api_key=${process.env.NASA_API}`
   );
-  if (!apiResponse.ok) return { status: apiResponse.status };
+  if (!apiResponse.ok) {
+    const { status, statusText } = apiResponse;
+    const error = new Error(statusText);
+    error.status = status;
+    error.origin = "getNeowsData";
+    throw error;
+  }
   const data = await apiResponse.json();
   return data;
 }
@@ -75,11 +88,26 @@ app.post("/getcadata/", async (request, response, next) => {
   }
 });
 
-app.post("/getobjectdata", async (request, response) => {
+app.post("/getobjectdata", async (request, response, next) => {
   let name = request.body.name.replace(/-/, "%20");
-  const objectData = await getObjectData(name);
-  const spkid = await objectData.object.spkid;
-  const neowsData = await getNeowsData(spkid);
+
+  let objectData;
+  try {
+    objectData = await getObjectData(name);
+  } catch (err) {
+    // Return is necessary to stop further statements from executing
+    return next(err);
+  }
+
+  const { spkid } = await objectData.object;
+
+  let neowsData;
+  try {
+    neowsData = await getNeowsData(spkid);
+  } catch (err) {
+    neowsData = { status: 404 };
+  }
+
   return response.render("objectdata.ejs", {
     objectData: objectData,
     neowsData: neowsData,

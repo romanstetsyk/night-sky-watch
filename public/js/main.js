@@ -83,6 +83,17 @@ async function getCAdata() {
       "Content-Type": "application/json",
     },
   });
+  if (!resp.ok) {
+    cadata.innerHTML = `<div class="container">
+                          <div class="error">
+                            <h3>Houston, we have a problem</h3>
+                            <h4>500. Unexpected Error...</h4>
+                          </div>
+                        </div>`;
+
+    removeSpinner();
+    return;
+  }
   const data = await resp.text();
   cadata.innerHTML = data;
   removeSpinner();
@@ -120,7 +131,14 @@ async function openDetails(event) {
         "Content-Type": "application/json",
       },
     });
-    const data = await resp.text();
+    let data;
+    if (!resp.ok) {
+      data = `<tr class="object-details" data-object-details=${objName}>
+                <td colspan="6">An error occured while fetching data</td>
+              </tr>`;
+    } else {
+      data = await resp.text();
+    }
     removeSpinner();
     selectedRow.insertAdjacentHTML("afterend", data);
   }
