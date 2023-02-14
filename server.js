@@ -25,48 +25,48 @@ function addDays(deltaDays, dateMin) {
 }
 
 async function getCloseApproachData(dateMin, dateMax) {
-  const apiResponse = await fetch(
+  const res = await fetch(
     `https://ssd-api.jpl.nasa.gov/cad.api?date-min=${dateMin}&date-max=${dateMax}&body=Earth&fullname=true&dist-max=0.05`
   );
 
-  if (!apiResponse.ok) {
-    const { status, statusText } = apiResponse;
+  if (!res.ok) {
+    const { status, statusText } = res;
     const error = new Error(statusText);
     error.status = status;
     throw error;
   }
-  const data = await apiResponse.json();
+  const data = await res.json();
   return data;
 }
 
 async function getObjectData(name) {
-  const apiResponse = await fetch(
+  const res = await fetch(
     `https://ssd-api.jpl.nasa.gov/sbdb.api?des=${name}&discovery=true`
   );
-  if (!apiResponse.ok) {
-    const { status, statusText } = apiResponse;
+  if (!res.ok) {
+    const { status, statusText } = res;
     const error = new Error(statusText);
     error.status = status;
     error.origin = "getObjectData";
     throw error;
   }
-  const data = await apiResponse.json();
+  const data = await res.json();
   return data;
 }
 
 async function getNeowsData(spkid) {
   const { NASA_API } = process.env;
-  const apiResponse = await fetch(
+  const res = await fetch(
     `https://api.nasa.gov/neo/rest/v1/neo/${spkid}?api_key=${NASA_API}`
   );
-  if (!apiResponse.ok) {
-    const { status, statusText } = apiResponse;
+  if (!res.ok) {
+    const { status, statusText } = res;
     const error = new Error(statusText);
     error.status = status;
     error.origin = "getNeowsData";
     throw error;
   }
-  const data = await apiResponse.json();
+  const data = await res.json();
   return data;
 }
 
