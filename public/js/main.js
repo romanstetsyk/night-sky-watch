@@ -24,7 +24,7 @@ function sortTable(e) {
     row.dataset.objectDetails ? rowsDetailsArray.push(row) : rowsArray.push(row)
   );
 
-  sortFunc = (colNum) => {
+  const sortFunc = (colNum) => {
     switch (colNum) {
       // Sort by date
       case 1:
