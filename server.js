@@ -1,9 +1,7 @@
 "use strict";
 
-require("dotenv").config();
 const express = require("express");
 const path = require("path");
-const fetch = require("node-fetch");
 
 const app = express();
 
